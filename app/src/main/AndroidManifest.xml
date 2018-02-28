@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".SwipeMechanic" />
         <activity android:name=".ShakeMechanic" />
-        <activity android:name=".MultiplayerConnection"></activity>
+        <activity android:name=".MultiplayerConnection" />
     </application>
 
 </manifest>

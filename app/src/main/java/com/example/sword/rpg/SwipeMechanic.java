@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -21,8 +22,8 @@ public class SwipeMechanic extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe_mechanic);
-        // Text for testing
         TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText("Swipe test");
         //Initiate gesture detector
         mDetector = new GestureDetectorCompat(this, this);
         // Set gesture detector as double tap listener
@@ -39,55 +40,71 @@ public class SwipeMechanic extends AppCompatActivity implements
 
     @Override
     public boolean onDown(MotionEvent event) {
-        Log.d(DEBUG_TAG,"onDown: " + event.toString());
+        //Log.d(DEBUG_TAG,"onDown: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
-        Log.d(DEBUG_TAG, "onFling: " + event1.toString() + event2.toString());
+        //Log.d(DEBUG_TAG, "onFling: " + event1.toString() + event2.toString());
+        if (event1.getY() - event2.getY() > 150) {
+            Toast.makeText(SwipeMechanic.this, "UP", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (event2.getY() - event1.getY() > 150) {
+            Toast.makeText(SwipeMechanic.this, "DOWN", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (event1.getX() - event2.getX() > 50) {
+            Toast.makeText(SwipeMechanic.this, "LEFT", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (event2.getX() - event1.getX() > 50) {
+            Toast.makeText(SwipeMechanic.this, "RIGHT", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         return true;
     }
 
     @Override
     public void onLongPress(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
+        //Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
     }
 
     @Override
     public boolean onScroll(MotionEvent event1, MotionEvent event2, float distanceX,
                             float distanceY) {
-        Log.d(DEBUG_TAG, "onScroll: " + event1.toString() + event2.toString());
+        //Log.d(DEBUG_TAG, "onScroll: " + event1.toString() + event2.toString());
         return true;
     }
 
     @Override
     public void onShowPress(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onShowPress: " + event.toString());
+        //Log.d(DEBUG_TAG, "onShowPress: " + event.toString());
     }
 
     @Override
     public boolean onSingleTapUp(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
+        //Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
+        //Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onDoubleTapEvent(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
+        //Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
         return true;
     }
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
+        //Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
         return true;
     }
 }
