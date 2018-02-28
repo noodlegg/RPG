@@ -22,5 +22,7 @@
         <activity android:name=".ShakeMechanic" />
         <activity android:name=".MultiplayerConnection"></activity>
     </application>
+    <!-- Require that the device has an accelerometer -->
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
 
 </manifest>

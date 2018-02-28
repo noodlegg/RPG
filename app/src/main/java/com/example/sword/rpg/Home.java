@@ -1,10 +1,13 @@
 package com.example.sword.rpg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
@@ -37,8 +40,15 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Button button = (Button) findViewById(R.id.shake_mechanic);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {startNewActivity(); }
+        });
+    }
+
+    protected void startNewActivity() {
+        Intent intent = new Intent(this, ShakeMechanic.class);
+        startActivity(intent);
     }
 
 }
