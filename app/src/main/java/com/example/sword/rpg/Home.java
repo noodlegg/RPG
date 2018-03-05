@@ -1,5 +1,6 @@
 package com.example.sword.rpg;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 public class Home extends AppCompatActivity {
 
     private TextView mTextMessage;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -22,9 +22,9 @@ public class Home extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_leaderboard:
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_settings:
                     return true;
             }
             return false;

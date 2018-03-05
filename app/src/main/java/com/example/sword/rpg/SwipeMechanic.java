@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import org.w3c.dom.Text;
+
+import java.util.Random;
 
 public class SwipeMechanic extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
@@ -17,17 +21,41 @@ public class SwipeMechanic extends AppCompatActivity implements
 
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
+    String inputSwipe = null;
+    Random random = new Random();
+    int scoreCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe_mechanic);
-        TextView textView = (TextView) findViewById(R.id.textView);
+        final TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText("Swipe test");
-        //Initiate gesture detector
+        // Toggle button to switch between swipe test and gamme test
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.toggleButton);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    commandTest();
+                } else {
+                    textView.setText("Swipe test");
+                    scoreCount = 0;
+                }
+            }
+        });
+        // Initiate gesture detector
         mDetector = new GestureDetectorCompat(this, this);
         // Set gesture detector as double tap listener
         mDetector.setOnDoubleTapListener(this);
+    }
+
+    // Broken af, fix with UI thread?
+    public void commandTest() {
+        TextView textView = (TextView) findViewById(R.id.textView);
+        String[] commands = {"up", "down", "left", "right"};
+        String command = commands[random.nextInt(4)];
+        textView.setText(command);
+
     }
 
     @Override
@@ -49,18 +77,22 @@ public class SwipeMechanic extends AppCompatActivity implements
                            float velocityX, float velocityY) {
         //Log.d(DEBUG_TAG, "onFling: " + event1.toString() + event2.toString());
         if (event1.getY() - event2.getY() > 150) {
+            inputSwipe = "up";
             Toast.makeText(SwipeMechanic.this, "UP", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (event2.getY() - event1.getY() > 150) {
+            inputSwipe = "down";
             Toast.makeText(SwipeMechanic.this, "DOWN", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (event1.getX() - event2.getX() > 50) {
+            inputSwipe = "left";
             Toast.makeText(SwipeMechanic.this, "LEFT", Toast.LENGTH_SHORT).show();
             return true;
         }
         if (event2.getX() - event1.getX() > 50) {
+            inputSwipe = "right";
             Toast.makeText(SwipeMechanic.this, "RIGHT", Toast.LENGTH_SHORT).show();
             return true;
         }
