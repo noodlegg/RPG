@@ -51,5 +51,6 @@ public class ShakeMechanic extends AppCompatActivity {
 
     public void handleShakeEvent(int count) {
         Snackbar.make(findViewById(R.id.shake_mechanic_activity), "Yay, u did it!", 2000).show();
+        finish();
     }
 }

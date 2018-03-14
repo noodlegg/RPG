@@ -54,6 +54,7 @@ public class SwipeMechanic extends AppCompatActivity implements
         }
         if (event2.getY() - event1.getY() > 150) {
             Toast.makeText(SwipeMechanic.this, "DOWN", Toast.LENGTH_SHORT).show();
+            finish();
             return true;
         }
         if (event1.getX() - event2.getX() > 50) {

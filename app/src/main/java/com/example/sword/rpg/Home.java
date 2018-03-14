@@ -39,15 +39,42 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        Button soloButton = (Button) findViewById(R.id.solo_mode);
+        soloButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {startSoloGame(); }
+        });
         mTextMessage = (TextView) findViewById(R.id.message);
-        Button button = (Button) findViewById(R.id.shake_mechanic);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {startNewActivity(); }
+        Button shakeButton = (Button) findViewById(R.id.shake_mechanic);
+        shakeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {startShakeMechanic(); }
+        });
+        Button swipeButton = (Button) findViewById(R.id.swipe_mechanic);
+        swipeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {startSwipeMechanic(); }
+        });
+        Button compassButton = (Button) findViewById(R.id.compass_mechanic);
+        compassButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {startCompassMechanic(); }
         });
     }
 
-    protected void startNewActivity() {
+    protected void startShakeMechanic() {
         Intent intent = new Intent(this, ShakeMechanic.class);
+        startActivity(intent);
+    }
+
+    protected void startSwipeMechanic() {
+        Intent intent = new Intent(this, SwipeMechanic.class);
+        startActivity(intent);
+    }
+
+    protected void startCompassMechanic() {
+        Intent intent = new Intent(this, CompassMechanic.class);
+        startActivity(intent);
+    }
+
+    protected void startSoloGame() {
+        Intent intent = new Intent(this, SoloGame.class);
         startActivity(intent);
     }
 
