@@ -16,8 +16,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -55,8 +58,9 @@ public class Leaderboard extends AppCompatActivity {
         mEditText = (EditText) findViewById(R.id.lb_editText);
         mButton = (Button) findViewById(R.id.lb_button);
 
-        // Initialize message ListView and its adapter
+        // Initialize ListView and its adapter
         List<PlayerScore> playerScores = new ArrayList<>();
+
         mLeaderboardAdapter
                 = new LeaderboardAdapter(this, R.layout.leaderboard_list_item, playerScores);
         mListView.setAdapter(mLeaderboardAdapter);
@@ -64,6 +68,7 @@ public class Leaderboard extends AppCompatActivity {
         // Initialize progress bar
         mProgressBar.setVisibility(ProgressBar.INVISIBLE);
 
+        // EditText for input
         mEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

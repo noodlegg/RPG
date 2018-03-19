@@ -6,12 +6,18 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:id="@+id/lb_ranking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Rank"/>
+
+    <TextView
         android:id="@+id/lb_playerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        tools:text="Scoree" />
+        tools:text="Score" />
 
     <TextView
         android:id="@+id/lb_playerName"

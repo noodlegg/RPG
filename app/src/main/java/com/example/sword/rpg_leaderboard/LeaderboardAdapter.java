@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,10 +28,13 @@ public class LeaderboardAdapter extends ArrayAdapter<PlayerScore> {
 
         TextView playerNameTextView = (TextView) convertView.findViewById(R.id.lb_playerName);
         TextView playerScoreTextView = (TextView) convertView.findViewById(R.id.lb_playerScore);
+        TextView playerRankTextView = (TextView) convertView.findViewById(R.id.lb_ranking);
 
+        playerRankTextView.setText(String.valueOf(position+1));
         PlayerScore playerScore = getItem(position);
         playerNameTextView.setText(playerScore.getName());
         playerScoreTextView.setText(String.valueOf(playerScore.getScore()));
+
 
         return convertView;
     }

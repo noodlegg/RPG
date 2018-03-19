@@ -1,5 +1,8 @@
 package com.example.sword.rpg_leaderboard;
 
+import android.support.annotation.NonNull;
+import java.util.Comparator;
+
 /**
  * Created by sword on 19-Mar-18.
  */
@@ -28,4 +31,5 @@ public class PlayerScore {
     public int getScore() {
         return score;
     }
+
 }
