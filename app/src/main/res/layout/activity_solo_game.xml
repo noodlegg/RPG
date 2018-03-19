@@ -8,4 +8,10 @@
     tools:context="com.example.sword.rpg.ShakeMechanic"
     tools:layout_editor_absoluteY="81dp">
 
+    <fragment
+        android:name="com.example.sword.rpg.PrepareScreen"
+        android:id="@+id/shown_screen"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></fragment>
+
 </android.support.constraint.ConstraintLayout>

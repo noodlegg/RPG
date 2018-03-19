@@ -1,15 +1,16 @@
 package com.example.sword.rpg;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-
+import android.support.v4.app.Fragment;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 public class SoloGame extends AppCompatActivity {
-    private HashMap<Class, Integer> commands = initializeCommands();
+    private HashMap<Fragment, Integer> commands = initializeCommands();
 
     Random rand = new Random();
 
@@ -17,13 +18,22 @@ public class SoloGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solo_game);
-        onResume(); //Proceed to game logic
+        doNewCommand(); //Proceed to game logic
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Class command = getRandomCommand(); //Pick a random command
+        doNewCommand();
+    }
+
+    public void commandFinished(boolean success) {
+        //TODO: Handle fail / success
+        doNewCommand();
+    }
+
+    private void doNewCommand() {
+        Fragment command = getRandomCommand(); //Pick a random command
 
         /* FOR DEBUGGING PURPOSES */
         System.out.println("=====================================");
@@ -36,19 +46,21 @@ public class SoloGame extends AppCompatActivity {
         System.out.println("New weights:");
         printWeights(); //FOR DEBUGGING PURPOSES
 
-        Intent intent = new Intent(this, command);
-        startActivity(intent); //Start the randomly chosen command
+        displayNewFragment(command);
     }
 
     /**
      * Creates a HashMap with every possible command in there, each with probability weight 1.
      * @return a HashMap with every possible command, each with probability weight 1.
      */
-    private HashMap<Class, Integer> initializeCommands() {
-        HashMap<Class, Integer> hmap = new HashMap<>();
-        hmap.put(SwipeMechanic.class, 1);
-        hmap.put(ShakeMechanic.class, 1);
-        hmap.put(CompassMechanic.class, 1);
+    private HashMap<Fragment, Integer> initializeCommands() {
+        HashMap<Fragment, Integer> hmap = new HashMap<>();
+
+        //The names of the different commands:
+        hmap.put(new GreenTestFragment(), 1);
+        hmap.put(new RedTestFragment(), 1);
+        hmap.put(new BlueTestFragment(), 1);
+
         return hmap;
     }
 
@@ -60,12 +72,12 @@ public class SoloGame extends AppCompatActivity {
      * {@code p("example") = commands.get("example") / getWeightSum()}
      * @return one of the classes in the HashMap {@code commands}
      */
-    private Class getRandomCommand() {
+    private Fragment getRandomCommand() {
         int weightSum = getWeightSum();
         int r = rand.nextInt(weightSum) + 1; //Pick a random number from [1, weightSum]
         System.out.println("Weight sum:  " + weightSum);
         System.out.println("Random value:" + r); //FOR DEBUGGING PURPOSES
-        for (Map.Entry<Class, Integer> entry : commands.entrySet()) { //Loop through all commands
+        for (Map.Entry<Fragment, Integer> entry : commands.entrySet()) { //Loop through all commands
             r -= entry.getValue(); //Decrease the random value by this command's weight
             if (r <= 0) { //If the random number has been reduced to 0 or less...
                 return entry.getKey(); //...pick this command
@@ -97,8 +109,8 @@ public class SoloGame extends AppCompatActivity {
      * @param chosenCommand
      * @modifies commands
      */
-    private void updateWeights(Class chosenCommand) {
-        for (Map.Entry<Class, Integer> entry : commands.entrySet()) {
+    private void updateWeights(Fragment chosenCommand) {
+        for (Map.Entry<Fragment, Integer> entry : commands.entrySet()) {
             if (entry.getKey() == chosenCommand) {
                 entry.setValue(1); //Set chosen command's weight to 1
             } else {
@@ -107,9 +119,24 @@ public class SoloGame extends AppCompatActivity {
         }
     }
 
+    private void displayNewFragment(Fragment command) {
+        // Create new fragment and transaction
+        Fragment fragment = command;
+        android.support.v4.app.FragmentTransaction transaction =
+                getSupportFragmentManager().beginTransaction();
+
+        // Replace whatever is in the fragment_container view with this fragment,
+        // and add the transaction to the back stack if needed
+        transaction.replace(R.id.shown_screen, fragment);
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
+
     /* FOR DEBUGGING PURPOSES */
     private void printWeights() {
-        for (Map.Entry<Class, Integer> entry : commands.entrySet()) {
+        for (Map.Entry<Fragment, Integer> entry : commands.entrySet()) {
             System.out.println("  " + entry.getKey() + ": " + entry.getValue());
         }
     }
