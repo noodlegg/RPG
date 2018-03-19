@@ -31,13 +31,4 @@
         android:layout_marginTop="74dp"
         android:text="Online" />
 
-    <fragment
-        android:id="@+id/buttonNavigation"
-        android:name="nl.tue.appdev_homepage.bottomSectionFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/button_navigation_fragment"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
 </RelativeLayout>

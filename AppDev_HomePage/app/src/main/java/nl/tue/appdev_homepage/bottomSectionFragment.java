@@ -42,8 +42,6 @@ public class bottomSectionFragment extends Fragment {
     }
 
     public void openSettingsActivity() {
-        Intent intent = new Intent(getActivity(), settingActivity.class);
-        startActivity(intent);
     }
     public void openMainMenuActivity() {
         Intent intent = new Intent(getActivity(), mainMenu.class);

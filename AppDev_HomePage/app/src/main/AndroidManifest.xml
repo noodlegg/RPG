@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mainMenu">
+        <activity android:name=".homePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,11 @@
             android:label="@string/title_activity_leader_board"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".aboutUs" />
-        <activity android:name=".howToPlay"></activity>
+        <activity android:name=".howToPlay" />
+        <activity
+            android:name=".homePage"
+            android:label="@string/title_activity_home_page"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

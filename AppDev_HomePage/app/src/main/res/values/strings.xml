@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AppDev_HomePage</string>
     <string name="title_activity_leader_board">leaderBoard</string>
+    <string name="title_activity_home_page">homePage</string>
 </resources>

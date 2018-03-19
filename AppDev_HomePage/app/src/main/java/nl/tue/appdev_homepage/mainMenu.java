@@ -1,41 +1,38 @@
 package nl.tue.appdev_homepage;
 
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-public class mainMenu extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
+public class mainMenu extends Fragment {
 
-        Button solo = (Button) findViewById(R.id.solo);
-        Button party = (Button) findViewById(R.id.party);
-        Button online = (Button) findViewById(R.id.online);
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+            View view = inflater.inflate(R.layout.mainMenuFragment, container, false);
+
+        Button solo = (Button) view.findViewById(R.id.solo);
+        Button party = (Button) view.findViewById(R.id.party);
+        Button online = (Button) view.findViewById(R.id.online);
 
 
         solo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(mainMenu.this,
-                        "solo mode", Toast.LENGTH_SHORT).show();
             }
         });
         party.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(mainMenu.this,
-                        "party mode", Toast.LENGTH_SHORT).show();
+
             }
         });
         online.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(mainMenu.this,
-                        "online mode", Toast.LENGTH_SHORT).show();
             }
         });
-
+            return view;
         }
 }
