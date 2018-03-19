@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "594580712774",
+    "firebase_url": "https://is70-9fb8a.firebaseio.com",
+    "project_id": "is70-9fb8a",
+    "storage_bucket": "is70-9fb8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:594580712774:android:bb44d6f6842c732b",
+        "android_client_info": {
+          "package_name": "com.example.sword.rpg_leaderboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "594580712774-5trgln99blg0sqv31lrc2olno781j1ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZCkOafDTvdn3pTCXf-tqkQNKCPQN8_ks"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
