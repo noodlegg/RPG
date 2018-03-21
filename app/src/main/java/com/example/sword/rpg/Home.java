@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
 
-    private TextView mTextMessage;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -49,11 +48,11 @@ public class Home extends AppCompatActivity {
                 startSwipeMechanic();
             }
         });
-        // Party opens ShakeMechanic activity
+        // Party opens PartyNameInput activity
         playParty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startShakeMechanic();
+                startPartyNameInput();
             }
         });
         // Online opens MultiplayerConnection activity
@@ -67,6 +66,11 @@ public class Home extends AppCompatActivity {
 
     public void startSwipeMechanic() {
         Intent intent = new Intent(this, SwipeMechanic.class);
+        startActivity(intent);
+    }
+
+    public void startPartyNameInput() {
+        Intent intent = new Intent(this, PartyNameInput.class);
         startActivity(intent);
     }
 

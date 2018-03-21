@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/party_background">
+
+    <EditText
+        android:id="@+id/nameField"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:fontFamily="@font/bubblegum"
+        android:maxLength="10"
+        android:hint="Enter Name..."
+        android:inputType="textPersonName"
+        android:textColor="?attr/colorButtonNormal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/nameList"
+        android:layout_width="368dp"
+        android:layout_height="273dp"
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/holo_red_dark"
+        android:divider="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/playButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="20px"
+        android:textColor="@android:color/black"
+        android:fontFamily="@font/bubblegum"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"/>
+
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="212dp"
+        android:layout_height="75dp"
+        android:layout_margin="20dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/play_button" />
+</android.support.constraint.ConstraintLayout>
