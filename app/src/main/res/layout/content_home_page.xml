@@ -3,15 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <fragment
+    <FrameLayout
         android:id="@+id/fragmentContainer"
-        android:name="com.example.sword.rpg.mainMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/button_navigation_fragment"
-        android:layout_alignParentTop="true"
-   />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
     <fragment
         android:id="@+id/buttonNavigation"
         android:name="com.example.sword.rpg.bottomSectionFragment"

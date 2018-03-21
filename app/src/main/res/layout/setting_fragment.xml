@@ -3,15 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/buttonNavigation"
-        android:name="nl.tue.appdev_homepage.bottomSectionFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/button_navigation_fragment"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
     <Switch
         android:id="@+id/soundEffects"
         android:layout_width="wrap_content"

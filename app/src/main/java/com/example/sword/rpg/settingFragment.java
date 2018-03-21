@@ -15,8 +15,8 @@ public class settingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.setting_fragment, container, false);
 
-        final Button howToPlayButton = (Button) view.findViewById(R.id.howToPlay);
-        final Button aboutUsButton = (Button) view.findViewById(R.id.aboutUs);
+        final Button howToPlayButton =  view.findViewById(R.id.howToPlay);
+        final Button aboutUsButton =    view.findViewById(R.id.aboutUs);
 
         howToPlayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
