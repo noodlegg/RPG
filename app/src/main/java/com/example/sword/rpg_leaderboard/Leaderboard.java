@@ -60,9 +60,9 @@ public class Leaderboard extends AppCompatActivity {
 
         // Initialize ListView and its adapter
         List<PlayerScore> playerScores = new ArrayList<>();
-
         mLeaderboardAdapter
                 = new LeaderboardAdapter(this, R.layout.leaderboard_list_item, playerScores);
+        mLeaderboardAdapter.notifyDataSetChanged();
         mListView.setAdapter(mLeaderboardAdapter);
 
         // Initialize progress bar
@@ -110,22 +110,18 @@ public class Leaderboard extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         };
         mPlayerDatabaseReference.addChildEventListener(mChildEventListener);
