@@ -33,7 +33,6 @@ public class Leaderboard extends AppCompatActivity {
     public static final int SCORE_LIMIT = 1000;
     private ListView mListView;
     private LeaderboardAdapter mLeaderboardAdapter;
-    private ProgressBar mProgressBar;
     private EditText mEditText;
     private Button mButton;
     private String mUsername;
@@ -53,7 +52,6 @@ public class Leaderboard extends AppCompatActivity {
         mPlayerDatabaseReference = mFirebaseDatabase.getReference().child("players");
 
         // Initialize references to views
-        mProgressBar = (ProgressBar) findViewById(R.id.lb_progressBar);
         mListView = (ListView) findViewById(R.id.lb_listView);
         mEditText = (EditText) findViewById(R.id.lb_editText);
         mButton = (Button) findViewById(R.id.lb_button);
@@ -64,9 +62,6 @@ public class Leaderboard extends AppCompatActivity {
                 = new LeaderboardAdapter(this, R.layout.leaderboard_list_item, playerScores);
         mLeaderboardAdapter.notifyDataSetChanged();
         mListView.setAdapter(mLeaderboardAdapter);
-
-        // Initialize progress bar
-        mProgressBar.setVisibility(ProgressBar.INVISIBLE);
 
         // EditText for input
         mEditText.addTextChangedListener(new TextWatcher() {
