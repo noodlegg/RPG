@@ -9,9 +9,23 @@
     tools:layout_editor_absoluteY="81dp">
 
     <fragment
-        android:name="com.example.sword.rpg.PrepareScreen"
         android:id="@+id/shown_screen"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></fragment>
+        android:name="com.example.sword.rpg.PrepareScreen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></fragment>
+
+    <fragment
+        android:id="@+id/timer_location"
+        android:name="com.example.sword.rpg.EmptyFragment"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="47dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

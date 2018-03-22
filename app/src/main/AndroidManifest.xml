@@ -22,6 +22,7 @@
         <activity android:name=".ShakeMechanic" />
         <activity android:name=".CompassMechanic" />
         <activity android:name=".SoloGame" />
+        <activity android:name=".GameOver" />
         <activity android:name=".MultiplayerConnection" />
     </application>
     <!-- Require that the device has an accelerometer -->
