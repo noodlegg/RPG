@@ -92,6 +92,7 @@ public class SoloGame extends AppCompatActivity {
         hmap.put(new GreenTestFragment(), 1);
         hmap.put(new RedTestFragment(), 1);
         hmap.put(new BlueTestFragment(), 1);
+        hmap.put(new SwipeCommandFragment(), 1);
 
         return hmap;
     }
