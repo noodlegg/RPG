@@ -1,58 +1,92 @@
 package com.example.sword.rpg;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 
 public class TimerFragment extends Fragment {
 
-    private ProgressBar mProgressBar;
-    TimerTask updateTimer;
+    private ProgressBar mProgressBar; // The progressbar timer
 
-    long timePassed = 0; // Time passed in milliseconds
-    int timeLimit = 500; // Maximum time for timer to run out
-    long updateRate = 5; // Time step for updating the progress bar
+    private boolean mIsRunning; // Whether the timer should keep running
+    private boolean mIsPaused = false; // Whether the timer is paused
+
+    private long timeLeft; // Time left in milliseconds
+    private long timeLimit = 3000; // Time limit in milliseconds
+    private long startTime; // Records the system time at which the timer started
+    private long timeAtPause = 0; // The system time at the moment the game is paused
+
+    private Handler timerHandler = new Handler(); // Handler used as timer
+    private Runnable timerRunnable = new Runnable() { // Handler Runnable
+
+        @Override
+        public void run() {
+            if (!mIsRunning) { // If the timer should stop
+                return; // Stop the timer
+            }
+
+            // Update timer
+            timeLeft = timeLimit - (System.currentTimeMillis() - startTime);
+            mProgressBar.setProgress((int) (1000 * timeLeft / timeLimit));
+
+            // If the time is up
+            if (timeLeft <= 0) {
+                // Fail the command
+                ((SoloGame)getActivity()).commandFinished(false);
+            }
+
+            // Repeat after 5 ms
+            timerHandler.postDelayed(this, 5);
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
-
         mProgressBar = view.findViewById(R.id.timer);
-        mProgressBar.setProgress(0);
 
-        updateTimer = new UpdateTimer();
-        new Timer().scheduleAtFixedRate(updateTimer, updateRate, timeLimit);
+        mIsRunning = true; // Yes, we want the timer to keep running
+        startTime = System.currentTimeMillis(); // Record the start time
+        timerHandler.postDelayed(timerRunnable, 0); // Call Handler Runnable
 
         return view;
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        updateTimer.cancel();
+    public void onPause() {
+        // Save the current time, so we can recalibrate the timer when we resume it.
+        timeAtPause = System.currentTimeMillis();
+        //Pause timer
+        timerHandler.removeCallbacksAndMessages(null);
+        mIsPaused = true;
+
+        super.onPause();
     }
 
-    class UpdateTimer extends TimerTask {
-        public void run() {
-            timePassed += 10;
-            if (timePassed >= timeLimit) {
-                cancel();
-                ((SoloGame)getActivity()).commandFinished(false);
-            }
-            mProgressBar.setProgress((int) (1000 * (timeLimit - timePassed) / timeLimit));
-            System.out.println(timePassed); //FOR TESTING PURPOSES
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mIsPaused) { // If the time has been paused:
+            startTime += System.currentTimeMillis() - timeAtPause; // Recalibrate timer
         }
+
+        // Resume timer
+        mIsPaused = false;
+        timerHandler.postDelayed(timerRunnable, 0);
+    }
+
+    /**
+     * Kills the timer
+     */
+    public void stopTimer() {
+        mIsRunning = false; // No, we don't want the timer to continue
+        timerHandler.removeCallbacks(timerRunnable); // Stop handler calls
     }
 }

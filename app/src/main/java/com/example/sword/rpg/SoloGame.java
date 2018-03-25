@@ -28,7 +28,6 @@ public class SoloGame extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        doNewCommand();
     }
 
     @Override
@@ -43,11 +42,8 @@ public class SoloGame extends AppCompatActivity {
      * @param success  whether the command was successfully executed or not
      */
     public void commandFinished(boolean success) {
+        timerFragment.stopTimer();
         if (success) {
-            if(timerFragment.updateTimer != null) {
-                // Stop the timer, so it can't still invoke this method after a successful execution
-                timerFragment.updateTimer.cancel();
-            }
             score++; // Increase score by one
             doNewCommand(); // Give a new command
         } else {
