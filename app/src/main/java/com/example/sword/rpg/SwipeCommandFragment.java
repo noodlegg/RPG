@@ -1,5 +1,6 @@
 package com.example.sword.rpg;
 
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.GestureDetector;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -22,9 +24,22 @@ public class SwipeCommandFragment extends Fragment {
         // Define view
         view = inflater.inflate(R.layout.fragment_swipe_command, container, false);
 
+        ImageView arrow = view.findViewById(R.id.arrow); // Arrow image
+        /*Matrix matrix = new Matrix(); // Matrix to define scale and rotation of image
+        arrow.setScaleType(ImageView.ScaleType.MATRIX); // Set scale type of image to MATRIX*/
+
         Random rand = new Random();
         direction = rand.nextInt(4); // Get a random direction ([0, 3])
+
+        // Rotate the matrix
+        /*matrix.postRotate((float) (90 * direction),
+                arrow.getDrawable().getBounds().width()/2,
+                arrow.getDrawable().getBounds().height()/2);
+        arrow.setImageMatrix(matrix); // Match scale of image to the matrix*/
+
+        arrow.setRotation(90* direction);
         updateText(direction); // Set the correct command title
+
 
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {

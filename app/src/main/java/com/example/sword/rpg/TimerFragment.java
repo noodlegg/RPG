@@ -17,7 +17,7 @@ public class TimerFragment extends Fragment {
     private boolean mIsPaused = false; // Whether the timer is paused
 
     private long timeLeft; // Time left in milliseconds
-    private long timeLimit = 3000; // Time limit in milliseconds
+    private long timeLimit = 2000; // Time limit in milliseconds
     private long startTime; // Records the system time at which the timer started
     private long timeAtPause = 0; // The system time at the moment the game is paused
 
@@ -53,7 +53,11 @@ public class TimerFragment extends Fragment {
         mProgressBar = view.findViewById(R.id.timer);
 
         mIsRunning = true; // Yes, we want the timer to keep running
+        timeLimit = getArguments().getLong("timeLimit", 2000); // Set timer duration
         startTime = System.currentTimeMillis(); // Record the start time
+
+        System.out.println("Time for this round: " + timeLimit);
+
         timerHandler.postDelayed(timerRunnable, 0); // Call Handler Runnable
 
         return view;
@@ -88,5 +92,22 @@ public class TimerFragment extends Fragment {
     public void stopTimer() {
         mIsRunning = false; // No, we don't want the timer to continue
         timerHandler.removeCallbacks(timerRunnable); // Stop handler calls
+    }
+
+    public static TimerFragment newInstance(int score) {
+        TimerFragment timerFragment = new TimerFragment(); // Create new timer
+
+        double MAX_TIME = 2000; // Largest time limit in ms (for first round)
+        double MIN_TIME = 500; // Shortest time limit in ms (asymptote for time function)
+
+        /* Function that returns a smaller and smaller value, as the game progresses, but never
+           less than MIN_TIME */
+        long timeLimit = (long) (3 * (MAX_TIME - MIN_TIME) / (0.6 * score + 3) + MIN_TIME);
+
+        Bundle args = new Bundle(); // Bundle to pass arguments
+        args.putLong("timeLimit", timeLimit); // Add argument to bundle
+        timerFragment.setArguments(args); // Pass bundle to the timer
+
+        return timerFragment; // Return the timer
     }
 }

@@ -74,7 +74,7 @@ public class SoloGame extends AppCompatActivity {
         System.out.println("New weights:");
         printWeights(); // FOR DEBUGGING PURPOSES
 
-        displayNewFragment(command);
+        displayNewCommand(command);
     }
 
     /**
@@ -153,7 +153,7 @@ public class SoloGame extends AppCompatActivity {
      * with a new one.
      * @param command  the chosen command to be displayed
      */
-    private void displayNewFragment(Fragment command) {
+    private void displayNewCommand(Fragment command) {
         // Create new transaction
         android.support.v4.app.FragmentTransaction transaction =
                 getSupportFragmentManager().beginTransaction();
@@ -162,7 +162,7 @@ public class SoloGame extends AppCompatActivity {
         transaction.replace(R.id.shown_screen, command);
 
         // Create new timer fragment and replace the old one
-        timerFragment = new TimerFragment();
+        timerFragment = TimerFragment.newInstance(score);
         transaction.replace(R.id.timer_location, timerFragment);
 
         // Commit the transaction
