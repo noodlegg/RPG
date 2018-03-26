@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="RubenRed">#E35757</color>
+    <color name="RubenRedDark">#c73b3b</color>
+    <color name="GianGreen">#38e277</color>
+    <color name="GianGreenDark">#17847d</color>
+    <color name="MaasMagenta">#a877dd   </color>
+    <color name="MaasMagentaDark">#804fb5</color>
 </resources>
