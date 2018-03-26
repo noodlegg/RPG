@@ -1,6 +1,8 @@
 package com.example.sword.rpg;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,75 +11,46 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
 
-    private TextView mTextMessage;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    return true;
-                case R.id.navigation_leaderboard:
-                    return true;
-                case R.id.navigation_settings:
-                    return true;
-            }
-            return false;
-        }
-    };
+    private Fragment fragment;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Initialize Fragments
+        fragmentManager = getSupportFragmentManager();
+        // Initial fragment is GameSelectFragment
+        fragment = new GameSelectFragment();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.main_container, fragment).commit();
+
+        // Initialize BottomNavigationView
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        Button playSolo = (Button) findViewById(R.id.solo_mode);
-        Button playParty = (Button) findViewById(R.id.party_mode);
-        Button playOnline = (Button) findViewById(R.id.online_mode);
-        // Solo opens SwipeMechanic activity
-        playSolo.setOnClickListener(new View.OnClickListener() {
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                startSwipeMechanic();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch (id) {
+                    case R.id.navigation_home:
+                        fragment = new GameSelectFragment();
+                        break;
+                    case R.id.navigation_leaderboard:
+                        fragment = new LeaderboardFragment();
+                        break;
+                    case R.id.navigation_settings:
+                        fragment = new SettingsFragment();
+                        break;
+                }
+                final FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_container, fragment).commit();
+                return true;
             }
         });
-        // Party opens ShakeMechanic activity
-        playParty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startShakeMechanic();
-            }
-        });
-        // Online opens MultiplayerConnection activity
-        playOnline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startMC();
-            }
-        });
-    }
 
-    public void startSwipeMechanic() {
-        Intent intent = new Intent(this, SwipeMechanic.class);
-        startActivity(intent);
     }
-
-    public void startShakeMechanic() {
-        Intent intent = new Intent(this, ShakeMechanic.class);
-        startActivity(intent);
-    }
-
-    public void startMC() {
-        Intent intent = new Intent(this, MultiplayerConnection.class);
-        startActivity(intent);
-    }
-
 }

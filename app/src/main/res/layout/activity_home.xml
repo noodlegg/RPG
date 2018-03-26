@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.sword.rpg.Home" >
 
+    <FrameLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
@@ -19,30 +29,30 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
 
-    <Button
-        android:id="@+id/solo_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Solo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+    <!--<Button-->
+        <!--android:id="@+id/solo_mode"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Solo"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"/>-->
 
-    <Button
-        android:id="@+id/party_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Party"
-        app:layout_constraintTop_toBottomOf="@id/solo_mode"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+    <!--<Button-->
+        <!--android:id="@+id/party_mode"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Party"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/solo_mode"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent" />-->
 
-    <Button
-        android:id="@+id/online_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Online"
-        app:layout_constraintTop_toBottomOf="@id/party_mode"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+    <!--<Button-->
+        <!--android:id="@+id/online_mode"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Online"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/party_mode"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent" />-->
 
 </android.support.constraint.ConstraintLayout>
