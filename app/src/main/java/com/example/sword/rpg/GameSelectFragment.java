@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class GameSelectFragment extends Fragment {
 
@@ -23,9 +24,9 @@ public class GameSelectFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_game_select, container, false);
 
         // Initialize buttons
-        Button playSolo = (Button) rootView.findViewById(R.id.solo_mode);
-        Button playParty = (Button) rootView.findViewById(R.id.party_mode);
-        Button playOnline = (Button) rootView.findViewById(R.id.online_mode);
+        ImageButton playSolo = (ImageButton) rootView.findViewById(R.id.solo_mode);
+        ImageButton playParty = (ImageButton) rootView.findViewById(R.id.party_mode);
+        ImageButton playOnline = (ImageButton) rootView.findViewById(R.id.online_mode);
 
         // Opens SoloGame activity
         playSolo.setOnClickListener(new View.OnClickListener() {

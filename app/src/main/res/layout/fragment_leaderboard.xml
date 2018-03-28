@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sword.rpg_leaderboard.Leaderboard">
+    tools:context="com.example.sword.rpg.LeaderboardFragment"
+    android:background="@drawable/background">
 
     <ListView
         android:id="@+id/lb_listView"
