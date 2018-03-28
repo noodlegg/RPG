@@ -50,7 +50,10 @@ public class SoloGame extends AppCompatActivity {
             System.out.println("Score: " + score); // FOR TESTING PURPOSES
             // Go to the Game Over screen
             Intent intent = new Intent(this, GameOver.class);
-            startActivity(intent);
+            Bundle bundle = new Bundle(); // New Bundle to pass score to Game Over screen
+            bundle.putInt("score", score); // Add score to bundle
+            intent.putExtras(bundle); // Add bundle to intent
+            startActivity(intent); // Start the intent
         }
     }
 

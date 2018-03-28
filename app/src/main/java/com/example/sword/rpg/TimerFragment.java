@@ -17,7 +17,7 @@ public class TimerFragment extends Fragment {
     private boolean mIsPaused = false; // Whether the timer is paused
 
     private long timeLeft; // Time left in milliseconds
-    private long timeLimit = 2000; // Time limit in milliseconds
+    private long timeLimit; // Time limit in milliseconds
     private long startTime; // Records the system time at which the timer started
     private long timeAtPause = 0; // The system time at the moment the game is paused
 
@@ -53,7 +53,7 @@ public class TimerFragment extends Fragment {
         mProgressBar = view.findViewById(R.id.timer);
 
         mIsRunning = true; // Yes, we want the timer to keep running
-        timeLimit = getArguments().getLong("timeLimit", 2000); // Set timer duration
+        timeLimit = getArguments().getLong("timeLimit", 1500); // Set timer duration
         startTime = System.currentTimeMillis(); // Record the start time
 
         System.out.println("Time for this round: " + timeLimit);
@@ -97,8 +97,8 @@ public class TimerFragment extends Fragment {
     public static TimerFragment newInstance(int score) {
         TimerFragment timerFragment = new TimerFragment(); // Create new timer
 
-        double MAX_TIME = 2000; // Largest time limit in ms (for first round)
-        double MIN_TIME = 500; // Shortest time limit in ms (asymptote for time function)
+        double MAX_TIME = 3000; // Largest time limit in ms (for first round)
+        double MIN_TIME = 1000; // Shortest time limit in ms (asymptote for time function)
 
         /* Function that returns a smaller and smaller value, as the game progresses, but never
            less than MIN_TIME */
