@@ -40,6 +40,13 @@ public class GameOver extends AppCompatActivity {
         handleHighScores(highScoreText, score);
     }
 
+    /**
+     * Handles high score checks and displays.
+     * Checks if a high score was beaten and if so, updates it.
+     * Also displays the (old) high score.
+     * @param highScoreText  TextView in layout that should display the high score
+     * @param score  score from recently finished game
+     */
     private void handleHighScores(TextView highScoreText, Integer score) {
         // Get shared data (preferences)
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -59,11 +66,17 @@ public class GameOver extends AppCompatActivity {
         }
     }
 
+    /**
+     * Opens the Home screen.
+     */
     protected void toHome() {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts a new solo game
+     */
     protected void playAgain() {
         Intent intent = new Intent(this, SoloGame.class);
         startActivity(intent);
