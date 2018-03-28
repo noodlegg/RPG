@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
-        tools:listitem="@layout/leaderboard_list_item"/>
+        tools:listitem="@layout/leaderboard_list_item" />
 
     <LinearLayout
         android:id="@+id/lb_linear_layout"
