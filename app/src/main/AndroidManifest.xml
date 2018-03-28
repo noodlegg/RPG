@@ -18,9 +18,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Home"/>
+        <activity android:name=".SoloGame" />
+        <activity android:name=".GameOver" />
         <activity android:name=".SwipeMechanic" />
         <activity android:name=".ShakeMechanic" />
         <activity android:name=".MultiplayerConnection" />
     </application>
-
+    <!-- Require that the device has an accelerometer -->
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
 </manifest>
