@@ -6,30 +6,51 @@
     android:background="@drawable/background"
     tools:context="com.example.sword.rpg.GameSelectFragment">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="295dp"
+        android:layout_height="225dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
     <ImageButton
         android:id="@+id/solo_mode"
-        android:text="Solo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:srcCompat="@drawable/solo_button" />
 
     <ImageButton
         android:id="@+id/party_mode"
-        android:text="Party"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/solo_mode"/>
+        app:layout_constraintTop_toBottomOf="@+id/solo_mode"
+        app:srcCompat="@drawable/party_button" />
 
     <ImageButton
         android:id="@+id/online_mode"
-        android:text="Online"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/party_mode"/>
+        app:layout_constraintTop_toBottomOf="@+id/party_mode"
+        app:srcCompat="@drawable/online_button" />
 
 </android.support.constraint.ConstraintLayout>

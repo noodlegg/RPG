@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/background">
 
 
     <Switch
         android:id="@+id/soundEffects"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="soundEffect"
-        android:layout_centerHorizontal="true"
         android:layout_above="@+id/howToPlay"
-        android:layout_marginBottom="32dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/bubblegum"
+        android:text="soundEffect"
+        android:textColor="?attr/colorButtonNormal"
+        android:textSize="18sp"
+        android:trackTint="?attr/colorButtonNormal"
+       />
 
 
     <Button
         android:id="@+id/howToPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HowToPlay"
-        android:layout_centerHorizontal="true"
         android:layout_above="@+id/aboutUs"
-        android:layout_marginBottom="45dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:fontFamily="@font/bubblegum"
+        android:text="HowToPlay"
+        android:textSize="18sp"
+        />
 
 
     <Button
         android:id="@+id/aboutUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About_Us"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:fontFamily="@font/bubblegum"
+        android:text="About_Us"
+        android:textSize="18sp" />
 
 
     <TextView
@@ -40,7 +51,10 @@
         android:layout_below="@+id/aboutUs"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
-        android:text="Version" />
+        android:fontFamily="@font/bubblegum"
+        android:text="Version: 0.0.1"
+        android:textColor="?attr/colorSwitchThumbNormal"
+        android:textSize="18sp" />
 
 
 </RelativeLayout>
