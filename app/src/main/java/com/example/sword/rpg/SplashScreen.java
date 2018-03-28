@@ -13,6 +13,7 @@ import android.view.Window;
  */
 
 public class SplashScreen extends AppCompatActivity {
+    //the duration of the splash screen in milliseconds
     private final int SPLASH_DISPLAY_LENGTH = 2000;
 
     @Override
@@ -21,7 +22,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         /* New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.*/
+         * and close this Splash-Screen after SPLASH_DISPLAY_LENGTH is over.*/
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
