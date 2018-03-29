@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF0"
+    android:background="@drawable/solo_background"
     tools:context="com.example.sword.rpg.SwipeCommandFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,8 +18,10 @@
 
     <ImageView
         android:id="@+id/arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/arrow" />
+        android:layout_width="264dp"
+        android:layout_height="287dp"
+        android:src="@drawable/swipe_up_command"
+        android:tint="@color/RubenRedDark"
+        app:layout_constraintTop_toTopOf="parent" />/>
 
 </FrameLayout>
