@@ -45,7 +45,15 @@ public class SoloGame extends AppCompatActivity {
         timerFragment.stopTimer();
         if (success) {
             score++; // Increase score by one
-            doNewCommand(); // Give a new command
+            // Create new transaction
+            android.support.v4.app.FragmentTransaction transaction =
+                    getSupportFragmentManager().beginTransaction();
+
+            // Replace the previous command with the new one
+            transaction.replace(R.id.shown_screen, new CorrectFragment());
+            // Replace timer with empty fragment
+            transaction.replace(R.id.timer_location, new EmptyFragment());
+            transaction.commit();
         } else {
             System.out.println("Score: " + score); // FOR TESTING PURPOSES
             // Go to the Game Over screen
@@ -63,7 +71,7 @@ public class SoloGame extends AppCompatActivity {
      * 2. Update each command's weight accordingly.
      * 3. Display new command.
      */
-    private void doNewCommand() {
+    public void doNewCommand() {
         Triplet<Fragment, Integer, Double> command = getRandomCommand(); //Pick a random command
 
         /* FOR DEBUGGING PURPOSES */
@@ -102,7 +110,7 @@ public class SoloGame extends AppCompatActivity {
     }
 
     /**
-     * Pick a random command from the ArrayList {@code commands}.
+     * Pick a random command from the Triplet {@code commands}.
      * Each command has a probability weight attached to it. The higher the weight of a command,
      * the higher the chance of this command being picked. The chance of the command "example"
      * happening is:
@@ -126,7 +134,7 @@ public class SoloGame extends AppCompatActivity {
 
     /**
      * Calculates the sum of all the commands their probability weights
-     * @return the sum of all the weights in {@code commands}
+     * @return the sum of all the weights    in {@code commands}
      */
     private int getWeightSum() {
         int sum = 0; // Start out with 0
