@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class SoloGame extends AppCompatActivity {
-    private HashMap<Fragment, Integer> commands = initializeCommands();
+    private ArrayList<Triplet> commands = initializeCommands();
     private int score = 0;
 
     // For random numbers
@@ -64,7 +64,7 @@ public class SoloGame extends AppCompatActivity {
      * 3. Display new command.
      */
     private void doNewCommand() {
-        Fragment command = getRandomCommand(); //Pick a random command
+        Triplet<Fragment, Integer, Double> command = getRandomCommand(); //Pick a random command
 
         /* FOR DEBUGGING PURPOSES */
         System.out.println("=====================================");
@@ -81,38 +81,43 @@ public class SoloGame extends AppCompatActivity {
     }
 
     /**
-     * Creates a HashMap with every possible command in there, each with probability weight 1.
-     * @return a HashMap with every possible command, each with probability weight 1.
+     * Creates an ArrayList with every possible command in there, with weight 1 and each their own
+     * difficulty.
+     * @return ArrayList with every possible command, with weight 1 and each their own difficulty
      */
-    private HashMap<Fragment, Integer> initializeCommands() {
-        HashMap<Fragment, Integer> hmap = new HashMap<>();
+    private ArrayList<Triplet> initializeCommands() {
+        // ArrayList with all the commands
+        ArrayList<Triplet> commands = new ArrayList<>();
 
-        // The names of the different commands:
-        hmap.put(new GreenTestFragment(), 1);
-        hmap.put(new RedTestFragment(), 1);
-        hmap.put(new BlueTestFragment(), 1);
-        hmap.put(new SwipeCommandFragment(), 1);
+        // Initial weight of every command
+        final int START_WEIGHT = 1;
 
-        return hmap;
+        // Add commands with their weight and difficulty to the ArrayList
+        commands.add(new Triplet(new GreenTestFragment(), START_WEIGHT, 5D));
+        commands.add(new Triplet(new RedTestFragment(), START_WEIGHT, 1D));
+        commands.add(new Triplet(new BlueTestFragment(), START_WEIGHT, 1D));
+        commands.add(new Triplet(new SwipeCommandFragment(), START_WEIGHT, 1D));
+
+        return commands;
     }
 
     /**
-     * Pick a random command from the HashMap {@code commands}.
+     * Pick a random command from the ArrayList {@code commands}.
      * Each command has a probability weight attached to it. The higher the weight of a command,
      * the higher the chance of this command being picked. The chance of the command "example"
      * happening is:
      * {@code p("example") = commands.get("example") / getWeightSum()}
-     * @return one of the classes in the HashMap {@code commands}
+     * @return one of the commands in the ArrayList {@code commands}
      */
-    private Fragment getRandomCommand() {
-        int weightSum = getWeightSum();
+    private Triplet<Fragment, Integer, Double> getRandomCommand() {
+        int weightSum = getWeightSum(); // Get sum of all weights
         int r = rand.nextInt(weightSum) + 1; // Pick a random number from [1, weightSum]
         System.out.println("Weight sum:  " + weightSum);
         System.out.println("Random value:" + r); // FOR DEBUGGING PURPOSES
-        for (Map.Entry<Fragment, Integer> entry : commands.entrySet()) { //Loop through all commands
-            r -= entry.getValue(); // Decrease the random value by this command's weight
+        for (Triplet<Fragment, Integer, Double> entry : commands) { //Loop through all commands
+            r -= entry.getWeight(); // Decrease the random value by this command's weight
             if (r <= 0) { // If the random number has been reduced to 0 or less...
-                return entry.getKey(); // ...pick this command
+                return entry; // ...pick this command
             } // Otherwise move to next command
         }
 
@@ -121,13 +126,13 @@ public class SoloGame extends AppCompatActivity {
 
     /**
      * Calculates the sum of all the commands their probability weights
-     * @return the sum of all the values in {@code commands}
+     * @return the sum of all the weights in {@code commands}
      */
     private int getWeightSum() {
         int sum = 0; // Start out with 0
 
-        for (Integer weight : commands.values()) {
-            sum += weight; // Add each command's probability weight to the sum
+        for (Triplet<Fragment, Integer, Double> entry : commands) {
+            sum +=  entry.getWeight(); // Add each command's probability weight to the sum
         }
 
         return sum; // Return the sum
@@ -141,12 +146,12 @@ public class SoloGame extends AppCompatActivity {
      * @param chosenCommand
      * @modifies commands
      */
-    private void updateWeights(Fragment chosenCommand) {
-        for (Map.Entry<Fragment, Integer> entry : commands.entrySet()) {
-            if (entry.getKey() == chosenCommand) {
-                entry.setValue(1); // Set chosen command's weight to 1
+    private void updateWeights(Triplet chosenCommand) {
+        for (Triplet<Fragment, Integer, Double> entry : commands) {
+            if (entry == chosenCommand) {
+                entry.resetWeight(); // Set chosen command's weight to 1
             } else {
-                entry.setValue(entry.getValue() + 1); // Increase the others by 1
+                entry.incrementWeight(); // Increase the others by 1
             }
         }
     }
@@ -156,16 +161,16 @@ public class SoloGame extends AppCompatActivity {
      * with a new one.
      * @param command  the chosen command to be displayed
      */
-    private void displayNewCommand(Fragment command) {
+    private void displayNewCommand(Triplet command) {
         // Create new transaction
         android.support.v4.app.FragmentTransaction transaction =
                 getSupportFragmentManager().beginTransaction();
 
         // Replace the previous command with the new one
-        transaction.replace(R.id.shown_screen, command);
+        transaction.replace(R.id.shown_screen, command.getCommand());
 
         // Create new timer fragment and replace the old one
-        timerFragment = TimerFragment.newInstance(score);
+        timerFragment = TimerFragment.newInstance(score, command.getDifficulty());
         transaction.replace(R.id.timer_location, timerFragment);
 
         // Commit the transaction
@@ -174,8 +179,8 @@ public class SoloGame extends AppCompatActivity {
 
     /* FOR DEBUGGING PURPOSES */
     private void printWeights() {
-        for (Map.Entry<Fragment, Integer> entry : commands.entrySet()) {
-            System.out.println("  " + entry.getKey() + ": " + entry.getValue());
+        for (Triplet<Fragment, Integer, Double> entry : commands) {
+            System.out.println("  " + entry.getCommand() + ": " + entry.getWeight());
         }
     }
 }

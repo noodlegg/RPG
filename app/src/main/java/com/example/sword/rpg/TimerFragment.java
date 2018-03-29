@@ -37,7 +37,9 @@ public class TimerFragment extends Fragment {
             // If the time is up
             if (timeLeft <= 0) {
                 // Fail the command
-                ((SoloGame)getActivity()).commandFinished(false);
+                if (getActivity() != null) {
+                    ((SoloGame)getActivity()).commandFinished(false);
+                }
             }
 
             // Repeat after 5 ms
@@ -94,7 +96,16 @@ public class TimerFragment extends Fragment {
         timerHandler.removeCallbacks(timerRunnable); // Stop handler calls
     }
 
-    public static TimerFragment newInstance(int score) {
+    /**
+     * Initializes the timer and its time limit.
+     * The higher the score, the lower the time limit is.
+     * Then, this time limit is multiplied with the difficulty, allowing it to be slightly more
+     * difficult or easy.
+     * @param score  so far accumulated score
+     * @param difficulty  difficulty of this specific command
+     * @return
+     */
+    public static TimerFragment newInstance(int score, double difficulty) {
         TimerFragment timerFragment = new TimerFragment(); // Create new timer
 
         double MAX_TIME = 3000; // Largest time limit in ms (for first round)
@@ -103,6 +114,8 @@ public class TimerFragment extends Fragment {
         /* Function that returns a smaller and smaller value, as the game progresses, but never
            less than MIN_TIME */
         long timeLimit = (long) (3 * (MAX_TIME - MIN_TIME) / (0.6 * score + 3) + MIN_TIME);
+        // Adapt time limit to difficulty
+        timeLimit *= difficulty;
 
         Bundle args = new Bundle(); // Bundle to pass arguments
         args.putLong("timeLimit", timeLimit); // Add argument to bundle
