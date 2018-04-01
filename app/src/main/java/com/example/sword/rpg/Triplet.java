@@ -7,17 +7,17 @@ import android.support.v4.app.Fragment;
  */
 public class Triplet<T, U, V> {
 
-    private final Fragment command;
+    private final Command command;
     private Integer weight;
     private final Double difficulty;
 
-    public Triplet(Fragment command, Integer weight, Double difficulty) {
+    public Triplet(Command command, Integer weight, Double difficulty) {
         this.command = command;
         this.weight = weight;
         this.difficulty = difficulty;
     }
 
-    public Fragment getCommand() {
+    public Command getCommand() {
         return command;
     }
 

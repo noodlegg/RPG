@@ -2,15 +2,17 @@ package com.example.sword.rpg;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v4.app.Fragment;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class SoloGame extends AppCompatActivity {
-    private ArrayList<Triplet> commands = initializeCommands();
-    private int score = 0;
+    private ArrayList<Triplet> commands = initializeCommands(); // All possible commands
+    private int score = 0; // Current score
+    private boolean isInverted; // Whether the current command is inverted or not
 
     // For random numbers
     Random rand = new Random();
@@ -43,7 +45,7 @@ public class SoloGame extends AppCompatActivity {
      */
     public void commandFinished(boolean success) {
         timerFragment.stopTimer();
-        if (success) {
+        if (success == !isInverted) {
             score++; // Increase score by one
             // Create new transaction
             android.support.v4.app.FragmentTransaction transaction =
@@ -72,7 +74,7 @@ public class SoloGame extends AppCompatActivity {
      * 3. Display new command.
      */
     public void doNewCommand() {
-        Triplet<Fragment, Integer, Double> command = getRandomCommand(); //Pick a random command
+        Triplet<Command, Integer, Double> command = getRandomCommand(); //Pick a random command
 
         /* FOR DEBUGGING PURPOSES */
         System.out.println("=====================================");
@@ -84,6 +86,8 @@ public class SoloGame extends AppCompatActivity {
         /* FOR DEBUGGING PURPOSES */
         System.out.println("New weights:");
         printWeights(); // FOR DEBUGGING PURPOSES
+
+        isInverted = shouldInvert(); // Decide whether this command should be inverted or not
 
         displayNewCommand(command);
     }
@@ -117,12 +121,12 @@ public class SoloGame extends AppCompatActivity {
      * {@code p("example") = commands.get("example") / getWeightSum()}
      * @return one of the commands in the ArrayList {@code commands}
      */
-    private Triplet<Fragment, Integer, Double> getRandomCommand() {
+    private Triplet<Command, Integer, Double> getRandomCommand() {
         int weightSum = getWeightSum(); // Get sum of all weights
         int r = rand.nextInt(weightSum) + 1; // Pick a random number from [1, weightSum]
         System.out.println("Weight sum:  " + weightSum);
         System.out.println("Random value:" + r); // FOR DEBUGGING PURPOSES
-        for (Triplet<Fragment, Integer, Double> entry : commands) { //Loop through all commands
+        for (Triplet<Command, Integer, Double> entry : commands) { //Loop through all commands
             r -= entry.getWeight(); // Decrease the random value by this command's weight
             if (r <= 0) { // If the random number has been reduced to 0 or less...
                 return entry; // ...pick this command
@@ -133,13 +137,26 @@ public class SoloGame extends AppCompatActivity {
     }
 
     /**
+     * Decides whether the next command should be inverted or not.
+     * When a command is "inverted", you can only succeed it by NOT completing it correctly in time.
+     * @return whether the next command should be inverted or not
+     */
+    private boolean shouldInvert() {
+        int pInvert = 3; // Chance of n/10 that the command should be inverted
+        Random rand = new Random();
+
+        // Whether the command should be inverted
+        return (rand.nextInt(10) < pInvert);
+    }
+
+    /**
      * Calculates the sum of all the commands their probability weights
-     * @return the sum of all the weights    in {@code commands}
+     * @return the sum of all the weights in {@code commands}
      */
     private int getWeightSum() {
         int sum = 0; // Start out with 0
 
-        for (Triplet<Fragment, Integer, Double> entry : commands) {
+        for (Triplet<Command, Integer, Double> entry : commands) {
             sum +=  entry.getWeight(); // Add each command's probability weight to the sum
         }
 
@@ -155,7 +172,7 @@ public class SoloGame extends AppCompatActivity {
      * @modifies commands
      */
     private void updateWeights(Triplet chosenCommand) {
-        for (Triplet<Fragment, Integer, Double> entry : commands) {
+        for (Triplet<Command, Integer, Double> entry : commands) {
             if (entry == chosenCommand) {
                 entry.resetWeight(); // Set chosen command's weight to 1
             } else {
@@ -171,7 +188,7 @@ public class SoloGame extends AppCompatActivity {
      */
     private void displayNewCommand(Triplet command) {
         // Create new transaction
-        android.support.v4.app.FragmentTransaction transaction =
+        FragmentTransaction transaction =
                 getSupportFragmentManager().beginTransaction();
 
         // Replace the previous command with the new one
@@ -181,13 +198,22 @@ public class SoloGame extends AppCompatActivity {
         timerFragment = TimerFragment.newInstance(score, command.getDifficulty());
         transaction.replace(R.id.timer_location, timerFragment);
 
-        // Commit the transaction
+        // Create command title
+        String text = command.getCommand().getTitle(); // Fetch title from command
+        if (isInverted) { // If the command is inverted:
+            text = "don't " + text; // Add "don't" at the start
+        }
+        text = text.substring(0, 1).toUpperCase() + text.substring(1); // Capitalize text
+        TextView title = findViewById(R.id.command_title);
+        title.setText(text); // Display title
+
+        // Commit the transaction for the command fragment
         transaction.commit();
     }
 
     /* FOR DEBUGGING PURPOSES */
     private void printWeights() {
-        for (Triplet<Fragment, Integer, Double> entry : commands) {
+        for (Triplet<Command, Integer, Double> entry : commands) {
             System.out.println("  " + entry.getCommand() + ": " + entry.getWeight());
         }
     }

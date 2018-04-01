@@ -1,15 +1,12 @@
 package com.example.sword.rpg;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class GreenTestFragment extends android.support.v4.app.Fragment {
+public class GreenTestFragment extends Command {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,5 +23,8 @@ public class GreenTestFragment extends android.support.v4.app.Fragment {
         return view;
     }
 
-
+    @Override
+    public String getTitle() {
+        return "press the button";
+    }
 }
