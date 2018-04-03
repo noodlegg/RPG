@@ -22,6 +22,7 @@
         <activity android:name=".SwipeMechanic" />
         <activity android:name=".ShakeMechanic" />
         <activity android:name=".MultiplayerConnection" />
+        <activity android:name=".ShakeCommandFragment" />
     </application>
 
 </manifest>
