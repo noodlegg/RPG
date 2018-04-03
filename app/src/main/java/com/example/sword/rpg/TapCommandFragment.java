@@ -9,6 +9,8 @@ import android.widget.Button;
 import java.util.Random;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class TapCommandFragment extends Fragment {
 
@@ -26,7 +28,7 @@ public class TapCommandFragment extends Fragment {
         Random rand = new Random();
         direction = rand.nextInt(4); // Get a random direction ([0, 3])
         updateText(direction); // Set the correct command title
-        Button button = view.findViewById(R.id.button);
+        ImageButton button = view.findViewById(R.id.button);
 
         isClicked=false;
         n=0;
@@ -95,7 +97,7 @@ public class TapCommandFragment extends Fragment {
 
     private void updateText(int direction) {
         // The command title
-        Button button = view.findViewById(R.id.button);
+        TextView tapText = view.findViewById(R.id.tap_text);
         String text = "Tap ";
 
         // Add the correct direction to the command title
@@ -115,7 +117,7 @@ public class TapCommandFragment extends Fragment {
         }
 
         // Update the command title text
-        button.setText(text);
+        tapText.setText(text);
     }
 }
 
