@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class GameOver extends AppCompatActivity {
@@ -18,13 +19,13 @@ public class GameOver extends AppCompatActivity {
         setContentView(R.layout.activity_game_over);
 
         // The Home button
-        Button homeButton = findViewById(R.id.home_button);
+        ImageButton homeButton = findViewById(R.id.home_button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {toHome(); }
         });
 
         // The Retry button
-        Button retryButton = findViewById(R.id.retry_button);
+        ImageButton retryButton = findViewById(R.id.retry_button);
         retryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {playAgain(); }
         });
