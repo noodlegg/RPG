@@ -22,7 +22,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_highscore"
-
         app:srcCompat="@drawable/retry_button" />
 
     <ImageButton
@@ -36,6 +35,7 @@
         android:background="@android:color/transparent"
         app:layout_constraintTop_toBottomOf="@+id/retry_button"
         app:layout_constraintStart_toStartOf="@+id/retry_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/home_button" />
 
     <TextView
