@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/RubenRed"
-    tools:context="com.example.sword.rpg.CorrectFragment">
+    tools:context="com.example.sword.rpg.CorrectFragment"
+    android:layout_gravity="center">
 
 
     <ImageView
         android:id="@+id/checkImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:tint="@color/RubenRedDark"
-        android:src="@drawable/check" />
+        android:src="@drawable/check_icon"
+        android:tint="@color/RubenRedDark" />
 </FrameLayout>

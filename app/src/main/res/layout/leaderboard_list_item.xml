@@ -8,26 +8,29 @@
     <TextView
         android:id="@+id/lb_ranking"
         android:layout_width="wrap_content"
-        android:fontFamily="@font/bubblegum"
         android:layout_height="wrap_content"
-        tools:text="Rank"/>
+        android:fontFamily="@font/bubblegum"
+        android:textColor="?attr/colorButtonNormal"
+        tools:text="Rank" />
 
     <TextView
         android:id="@+id/lb_playerScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bubblegum"
         android:layout_weight="0"
+        android:fontFamily="@font/bubblegum"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="?attr/actionModeSplitBackground"
         tools:text="Score" />
 
     <TextView
         android:id="@+id/lb_playerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bubblegum"
         android:layout_weight="0"
+        android:fontFamily="@font/bubblegum"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="?attr/colorButtonNormal"
         tools:text="Name" />
 
     <View

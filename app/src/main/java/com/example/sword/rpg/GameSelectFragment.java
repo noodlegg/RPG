@@ -26,7 +26,6 @@ public class GameSelectFragment extends Fragment {
         // Initialize buttons
         ImageButton playSolo = (ImageButton) rootView.findViewById(R.id.solo_mode);
         ImageButton playParty = (ImageButton) rootView.findViewById(R.id.party_mode);
-        ImageButton playOnline = (ImageButton) rootView.findViewById(R.id.online_mode);
 
         // Opens SoloGame activity
         playSolo.setOnClickListener(new View.OnClickListener() {
@@ -44,15 +43,6 @@ public class GameSelectFragment extends Fragment {
                 //startActivity(intent);
             }
         });
-        // Opens MultiplayerGame activity
-        playOnline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Intent intent = new Intent(v.getContext(), MultiplayerConnection.class);
-                //startActivity(intent);
-            }
-        });
-
         // Inflate the layout for this fragment
         return rootView;
     }
