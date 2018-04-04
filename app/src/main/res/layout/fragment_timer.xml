@@ -1,8 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sword.rpg.TimerFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.sword.rpg.TimerFragment"
+    android:background="@color/RubenRed">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -11,7 +13,11 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
         android:max="1000"
-        android:progress="0" />
+        android:progress="0"
+        android:progressTint="@color/RubenRedDark"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>

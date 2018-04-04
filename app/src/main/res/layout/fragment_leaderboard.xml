@@ -8,9 +8,10 @@
 
     <ListView
         android:id="@+id/lb_listView"
-        android:layout_above="@+id/lb_linear_layout"
+        style="@style/Widget.AppCompat.Light.ListView.DropDown"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/lb_linear_layout"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
         tools:listitem="@layout/leaderboard_list_item" />

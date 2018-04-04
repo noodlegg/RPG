@@ -21,6 +21,7 @@
         android:layout_width="240dp"
         android:layout_height="80dp"
         android:layout_margin="20dp"
+        android:layout_marginTop="80dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -39,18 +40,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/solo_mode"
         app:srcCompat="@drawable/party_button" />
-
-    <ImageButton
-        android:id="@+id/online_mode"
-        android:layout_width="240dp"
-        android:layout_height="80dp"
-        android:layout_margin="20dp"
-        android:layout_marginBottom="40dp"
-        android:background="@android:color/transparent"
-        android:scaleType="fitXY"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/party_mode"
-        app:srcCompat="@drawable/online_button" />
 
 </android.support.constraint.ConstraintLayout>
