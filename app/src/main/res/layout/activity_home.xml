@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sword.rpg.Home"
+    tools:layout_editor_absoluteY="81dp">
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation" />
+
+    <Button
+        android:id="@+id/solo_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/party_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Party"
+        app:layout_constraintStart_toStartOf="@+id/solo_mode"
+        app:layout_constraintTop_toBottomOf="@+id/solo_mode" />
+
+    <Button
+        android:id="@+id/online_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Online"
+        app:layout_constraintStart_toStartOf="@+id/party_mode"
+        app:layout_constraintTop_toBottomOf="@+id/party_mode" />
+
+    <Button
+        android:id="@+id/shake_mechanic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip to shake mechanic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/online_mode"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/swipe_mechanic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip to swipe mechanic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/online_mode"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.626" />
+
+    <Button
+        android:id="@+id/compass_mechanic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="@+id/swipe_mechanic"
+        app:layout_constraintTop_toBottomOf="@+id/swipe_mechanic" />
+
+</android.support.constraint.ConstraintLayout>
