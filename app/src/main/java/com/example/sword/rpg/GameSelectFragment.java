@@ -40,16 +40,16 @@ public class GameSelectFragment extends Fragment {
         playParty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ShakeMechanic.class);
-                startActivity(intent);
+                //Intent intent = new Intent(v.getContext(), ShakeMechanic.class);
+                //startActivity(intent);
             }
         });
         // Opens MultiplayerGame activity
         playOnline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MultiplayerConnection.class);
-                startActivity(intent);
+                //Intent intent = new Intent(v.getContext(), MultiplayerConnection.class);
+                //startActivity(intent);
             }
         });
 

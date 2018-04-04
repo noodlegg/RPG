@@ -1,7 +1,6 @@
 package com.example.sword.rpg;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class SwipeCommandFragment extends Fragment {
+public class SwipeCommandFragment extends Command {
 
     private int direction;
     private View view;
@@ -24,20 +23,9 @@ public class SwipeCommandFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_swipe_command, container, false);
 
         ImageView arrow = view.findViewById(R.id.arrow); // Arrow image
-        /*Matrix matrix = new Matrix(); // Matrix to define scale and rotation of image
-        arrow.setScaleType(ImageView.ScaleType.MATRIX); // Set scale type of image to MATRIX*/
-
-        Random rand = new Random();
-        direction = rand.nextInt(4); // Get a random direction ([0, 3])
-
-        // Rotate the matrix
-        /*matrix.postRotate((float) (90 * direction),
-                arrow.getDrawable().getBounds().width()/2,
-                arrow.getDrawable().getBounds().height()/2);
-        arrow.setImageMatrix(matrix); // Match scale of image to the matrix*/
 
         arrow.setRotation(90* direction);
-        updateText(direction); // Set the correct command title
+
 
 
         final GestureDetector gesture = new GestureDetector(getActivity(),
@@ -98,6 +86,29 @@ public class SwipeCommandFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public String getTitle() {
+        String title; // The command title
+
+        Random rand = new Random();
+        direction = rand.nextInt(4); // Get a random direction ([0, 3])
+
+        title = "swipe "; // Title starts with "swipe"
+        // Add the correct direction to the command title
+        switch (direction) {
+            case 0: title += "up!";
+                break;
+            case 1: title += "right!";
+                break;
+            case 2: title += "down!";
+                break;
+            case 3: title += "left!";
+                break;
+        }
+
+        return title;
+    }
+
     private void swipeDetected(int detected) {
         // On a correct swipe:
         if (detected == direction) {
@@ -107,26 +118,5 @@ public class SwipeCommandFragment extends Fragment {
             // Command failed
             ((SoloGame)getActivity()).commandFinished(false);
         }
-    }
-
-    private void updateText(int direction) {
-        // The command title
-        TextView textView = view.findViewById(R.id.command_title);
-        String text = "Swipe ";
-
-        // Add the correct direction to the command title
-        switch (direction) {
-            case 0: text += "up!";
-                break;
-            case 1: text += "right!";
-                break;
-            case 2: text += "down!";
-                break;
-            case 3: text += "left!";
-                break;
-        }
-
-        // Update the command title text
-        textView.setText(text);
     }
 }

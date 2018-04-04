@@ -6,18 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 
 
-public class TimerFragment extends Fragment {
-
-    private ProgressBar mProgressBar; // The progressbar timer
+public class CorrectFragment extends Fragment {
 
     private boolean mIsRunning; // Whether the timer should keep running
     private boolean mIsPaused = false; // Whether the timer is paused
 
-    private long timeLeft; // Time left in milliseconds
-    private long timeLimit; // Time limit in milliseconds
+    private long timePassed=0; // Time passed in milliseconds
+    private long timeLimit = 50000; // Time limit in milliseconds
     private long startTime; // Records the system time at which the timer started
     private long timeAtPause = 0; // The system time at the moment the game is paused
 
@@ -31,14 +29,32 @@ public class TimerFragment extends Fragment {
             }
 
             // Update timer
-            timeLeft = timeLimit - (System.currentTimeMillis() - startTime);
-            mProgressBar.setProgress((int) (1000 * timeLeft / timeLimit));
+            timePassed += (System.currentTimeMillis() - startTime);
+
+            ImageView img= (ImageView) getView().findViewById(R.id.checkImage);
+
+            //Remove check if 5,000 < t < 10,000
+            if (timePassed > 5000 && timePassed < 10000) {
+                img.setImageResource(R.drawable.empty);
+            }
+            //Display check if 10,000 < t < 15,000
+            if (timePassed > 10000 && timePassed < 15000) {
+                img.setImageResource(R.drawable.check);
+            }
+            //Remove check if 15,000 < t < 20,000
+            if (timePassed > 15000 && timePassed < 20000) {
+                img.setImageResource(R.drawable.empty);
+            }
+            //Display check if t > 20000
+            if (timePassed > 20000) {
+                img.setImageResource(R.drawable.check);
+            }
 
             // If the time is up
-            if (timeLeft <= 0) {
-                // Fail the command
+            if (timePassed >= timeLimit) {
+                // Proceed to next command
                 if (getActivity() != null) {
-                    ((SoloGame)getActivity()).commandFinished(false);
+                    ((SoloGame)getActivity()).doNewCommand();
                 }
             }
 
@@ -51,14 +67,10 @@ public class TimerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_timer, container, false);
-        mProgressBar = view.findViewById(R.id.timer);
+        View view = inflater.inflate(R.layout.fragment_correct, container, false);
 
         mIsRunning = true; // Yes, we want the timer to keep running
-        timeLimit = getArguments().getLong("timeLimit", 1500); // Set timer duration
         startTime = System.currentTimeMillis(); // Record the start time
-
-        System.out.println("Time for this round: " + timeLimit);
 
         timerHandler.postDelayed(timerRunnable, 0); // Call Handler Runnable
 
@@ -94,33 +106,5 @@ public class TimerFragment extends Fragment {
     public void stopTimer() {
         mIsRunning = false; // No, we don't want the timer to continue
         timerHandler.removeCallbacks(timerRunnable); // Stop handler calls
-    }
-
-    /**
-     * Initializes the timer and its time limit.
-     * The higher the score, the lower the time limit is.
-     * Then, this time limit is multiplied with the difficulty, allowing it to be slightly more
-     * difficult or easy.
-     * @param score  so far accumulated score
-     * @param difficulty  difficulty of this specific command
-     * @return
-     */
-    public static TimerFragment newInstance(int score, double difficulty) {
-        TimerFragment timerFragment = new TimerFragment(); // Create new timer
-
-        double MAX_TIME = 3000; // Largest time limit in ms (for first round)
-        double MIN_TIME = 1000; // Shortest time limit in ms (asymptote for time function)
-
-        /* Function that returns a smaller and smaller value, as the game progresses, but never
-           less than MIN_TIME */
-        long timeLimit = (long) (3 * (MAX_TIME - MIN_TIME) / (0.6 * score + 3) + MIN_TIME);
-        // Adapt time limit to difficulty
-        timeLimit *= difficulty;
-
-        Bundle args = new Bundle(); // Bundle to pass arguments
-        args.putLong("timeLimit", timeLimit); // Add argument to bundle
-        timerFragment.setArguments(args); // Pass bundle to the timer
-
-        return timerFragment; // Return the timer
     }
 }
