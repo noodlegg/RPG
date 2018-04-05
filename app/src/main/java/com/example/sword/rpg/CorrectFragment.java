@@ -31,7 +31,7 @@ public class CorrectFragment extends Fragment {
             // Update timer
             timePassed += (System.currentTimeMillis() - startTime);
 
-            ImageView img= (ImageView) getView().findViewById(R.id.checkImage);
+            ImageView img= getView().findViewById(R.id.checkImage);
 
             //Remove check if 5,000 < t < 10,000
             if (timePassed > 5000 && timePassed < 10000) {
@@ -54,7 +54,10 @@ public class CorrectFragment extends Fragment {
             if (timePassed >= timeLimit) {
                 // Proceed to next command
                 if (getActivity() != null) {
-                    ((SoloGame)getActivity()).doNewCommand();
+                    mIsRunning = false; // No, we don't want the timer to continue
+                    timerHandler.removeCallbacks(timerRunnable); // Stop handler calls
+
+                    ((SoloGame)getActivity()).doNewCommand(); // Get new command
                 }
             }
 
@@ -98,13 +101,5 @@ public class CorrectFragment extends Fragment {
         // Resume timer
         mIsPaused = false;
         timerHandler.postDelayed(timerRunnable, 0);
-    }
-
-    /**
-     * Kills the timer
-     */
-    public void stopTimer() {
-        mIsRunning = false; // No, we don't want the timer to continue
-        timerHandler.removeCallbacks(timerRunnable); // Stop handler calls
     }
 }

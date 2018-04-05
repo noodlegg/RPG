@@ -34,6 +34,6 @@ public class Triplet<T, U, V> {
     }
 
     public void resetWeight() {
-        weight = 0;
+        weight = 1;
     }
 }
