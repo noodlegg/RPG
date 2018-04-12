@@ -17,7 +17,7 @@ public class RedTestFragment extends Command {
         Button button = (Button) view.findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ((SoloGame)getActivity()).commandFinished(true); }
+                ((Game)getActivity()).commandFinished(true); }
         });
 
         return view;

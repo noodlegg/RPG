@@ -38,7 +38,7 @@ public class TimerFragment extends Fragment {
             if (timeLeft <= 0) {
                 // Fail the command
                 if (getActivity() != null) {
-                    ((SoloGame)getActivity()).commandFinished(false);
+                    ((Game)getActivity()).commandFinished(false);
                 }
             }
 

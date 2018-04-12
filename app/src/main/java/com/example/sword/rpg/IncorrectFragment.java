@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
-public class CorrectFragment extends Fragment {
+public class IncorrectFragment extends Fragment {
 
     private boolean mIsRunning; // Whether the timer should keep running
     private boolean mIsPaused = false; // Whether the timer is paused
@@ -31,7 +31,7 @@ public class CorrectFragment extends Fragment {
             // Update timer
             timePassed += (System.currentTimeMillis() - startTime);
 
-            ImageView img= getView().findViewById(R.id.checkImage);
+            ImageView img= getView().findViewById(R.id.crossImage);
 
             //Remove check if 5,000 < t < 10,000
             if (timePassed > 5000 && timePassed < 10000) {
@@ -39,7 +39,7 @@ public class CorrectFragment extends Fragment {
             }
             //Display check if 10,000 < t < 15,000
             if (timePassed > 10000 && timePassed < 15000) {
-                img.setImageResource(R.drawable.check);
+                img.setImageResource(R.drawable.cross);
             }
             //Remove check if 15,000 < t < 20,000
             if (timePassed > 15000 && timePassed < 20000) {
@@ -47,7 +47,7 @@ public class CorrectFragment extends Fragment {
             }
             //Display check if t > 20000
             if (timePassed > 20000) {
-                img.setImageResource(R.drawable.check);
+                img.setImageResource(R.drawable.cross);
             }
 
             // If the time is up
@@ -70,7 +70,7 @@ public class CorrectFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_correct, container, false);
+        View view = inflater.inflate(R.layout.fragment_incorrect, container, false);
 
         mIsRunning = true; // Yes, we want the timer to keep running
         startTime = System.currentTimeMillis(); // Record the start time

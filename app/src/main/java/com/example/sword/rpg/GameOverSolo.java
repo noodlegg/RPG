@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class GameOver extends AppCompatActivity {
+public class GameOverSolo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

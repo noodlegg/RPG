@@ -5,19 +5,16 @@
     android:id="@+id/solo_game_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sword.rpg.ShakeMechanic"
+    tools:context="com.example.sword.rpg.Game"
     tools:layout_editor_absoluteY="81dp">
 
     <fragment
         android:id="@+id/shown_screen"
         android:name="com.example.sword.rpg.EmptyFragment"
-        android:layout_width="0dp"
-        android:layout_height="361dp"
-        app:layout_constraintBottom_toTopOf="@id/timer_location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/command_title"></fragment>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation = "0dp"
+        app:layout_constraintVertical_bias="0.0"></fragment>
 
     <fragment
         android:id="@+id/timer_location"
@@ -36,7 +33,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text=""
+        android:text="TEST TEXT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
