@@ -6,8 +6,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Extends the logic of Game to play a party game.
+ * Each command is directed at one of the participating players (there are at least two). If this
+ * particular player fulfills the command in time, they are rewarded with a point. Each player is
+ * presented with the same amount of commands, but the order in which players are chosen is, just
+ * like the order of the different commands, semi-random. After each player has been given all their
+ * commands, the game ends.
+ */
 public class PartyGame extends Game {
-    PlayerTriplet currentPlayer;
+    protected ArrayList<PlayerTriplet> players; // List of all participating players
+    PlayerTriplet currentPlayer; // Player that has to perform the current command
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +24,10 @@ public class PartyGame extends Game {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Initializes the list of players
+     * @return  a list with all the participating players
+     */
     protected ArrayList<PlayerTriplet> initializePlayers() {
         return (ArrayList) getIntent().getSerializableExtra("players");
     }
@@ -57,6 +70,14 @@ public class PartyGame extends Game {
         title.setText(text); // Display title
     }
 
+    /**
+     * Picks a random player from the ArrayList {@code players}.
+     * For each player in the list, the probability weight for this player to be chosen is the
+     * number of commands they have left. The change of the player "examplePlayer" being chosen is:
+     * {@code p(examplePlayer) = examplePlayer.getCommandsLeft() / getSum()}
+     * Pick a random command from the ArrayList {@code commands}.
+     * @return one of the players in the ArrayList {@code players}
+     */
     private PlayerTriplet getRandomPlayer() {
         int sum = getSum();
         int r = rand.nextInt(sum) + 1;
@@ -70,6 +91,11 @@ public class PartyGame extends Game {
         return null;
     }
 
+    /**
+     * Returns the sum of every player's getCommandsLeft().
+     * This is equal to the number of commands that are left for the game to end.
+     * @return  how many commands still have to be given out until the end of the game
+     */
     private int getSum() {
         int sum = 0; // Start out with 0
 
@@ -80,6 +106,9 @@ public class PartyGame extends Game {
         return sum;
     }
 
+    /**
+     * Sends the players to the game over screen.
+     */
     private void gameOver() {
         // Go to the Game Over screen
         Intent intent = new Intent(this, GameOverSolo.class);

@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Game Over screen that is shown at the end of a Solo Game.
+ * It contains both the score that was achieved in this game, as well as the user's personal
+ * high score.
+ */
 public class GameOverSolo extends AppCompatActivity {
 
     @Override

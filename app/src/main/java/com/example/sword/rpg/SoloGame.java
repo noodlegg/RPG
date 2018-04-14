@@ -4,6 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+/**
+ * Extends the logic of Game to play a solo game.
+ * If the user fulfills their command within the time limit, they are rewarded a point and are
+ * presented with another task for this process to be repeated. Each new command has to be performed
+ * in slightly less time than the previous one.
+ * If the user fails to perform the given command in time, the game stops.
+ */
 public class SoloGame extends Game {
     @Override
     public void commandFinished(boolean success) {
@@ -17,6 +24,9 @@ public class SoloGame extends Game {
         }
     }
 
+    /**
+     * Sends the player to the game over screen
+     */
     private void gameOver() {
         // Go to the Game Over screen
         Intent intent = new Intent(this, GameOverSolo.class);

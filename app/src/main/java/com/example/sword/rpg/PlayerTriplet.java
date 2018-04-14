@@ -4,13 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Stores a triplet of a Fragment, Integer and Double
+ * Stores a triplet of a String and two integers
  */
 public class PlayerTriplet implements Parcelable{
 
-    private final String name;
-    private Integer commandsLeft;
-    private Integer score;
+    private final String name; // Name of the player
+    private Integer commandsLeft; // Number of commands that are still to be given to this player
+    private Integer score; // Score of the player
 
     public PlayerTriplet(String name, int commandsLeft, int score) {
         this.name = name;
@@ -30,6 +30,11 @@ public class PlayerTriplet implements Parcelable{
         return score;
     }
 
+    /**
+     * Decreases this.commandsLeft by one and increments the score if the command was executed
+     * successfully.
+     * @param success  whether the command was executed successfully.
+     */
     public void commandExecuted(boolean success) {
         commandsLeft--;
         if (success) {

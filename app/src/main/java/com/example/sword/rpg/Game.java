@@ -8,9 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Main logic for running a game.
+ * The user is presented with short task that they have to fulfill in a set amount of time: a
+ * command. If they fulfill this command within the time limit, they receive a point.
+ * When the game ends can vary between the different game modes. Currently there are two different
+ * game modes: solo mode and party mode.
+ */
 public class Game extends AppCompatActivity{
     protected ArrayList<CommandTriplet> commands = initializeCommands(); // All possible commands
-    protected ArrayList<PlayerTriplet> players;
     protected int score = 0; // Current score (Solo mode)
 
     protected boolean isInverted = false; // Whether the current command is inverted or not
@@ -98,11 +104,11 @@ public class Game extends AppCompatActivity{
     }
 
     /**
-     * Pick a random command from the CommandTriplet {@code commands}.
+     * Picks a random command from the ArrayList {@code commands}.
      * Each command has a probability weight attached to it. The higher the weight of a command,
      * the higher the chance of this command being picked. The chance of the command "example"
      * happening is:
-     * {@code p("example") = commands.get("example") / getWeightSum()}
+     * {@code p(example) = example.getWeight() / getWeightSum()}
      * @return one of the commands in the ArrayList {@code commands}
      */
     private CommandTriplet getRandomCommand() {
