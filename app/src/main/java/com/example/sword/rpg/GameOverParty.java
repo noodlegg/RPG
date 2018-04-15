@@ -51,18 +51,29 @@ public class GameOverParty extends AppCompatActivity {
 
     }
 
+    /**
+     * Logic for displaying the result of the game.
+     * @param players  participating players
+     */
     private void displayResult(ArrayList<PlayerTriplet> players) {
         for (int i = 0; i < players.size(); i++) {
             PlayerTriplet player = players.get(i);
 
-            int nameId = 3 * i;
-            int scoreId = 3 * i + 1;
+            int nameId = 3 * i; // Unique id for the name
+            int scoreId = 3 * i + 1; // Unique id for the score
 
+            // Add TextViews to the layout
             addTextView(player.getName(), nameId);
             addTextView(player.getScore().toString(), scoreId);
         }
     }
 
+    /**
+     * Adds another TextView to the layout.
+     * @param text  text for this TextView
+     * @param id  unique id for this TextView
+     * @return
+     */
     private TextView addTextView(String text, int id) {
         TextView textView = new TextView(this); // Create new TextView
         textView.setText(shorten(text)); // Set text to inputted name
@@ -77,6 +88,11 @@ public class GameOverParty extends AppCompatActivity {
         return textView;
     }
 
+    /**
+     * Constraints a text view to the side of the screen.
+     * @param textView  the TextView that has to be constrained
+     * @param type  what the content of the TextView is (0 for name, 1 for score)
+     */
     private void constraintHorizontally(TextView textView, int type) {
         int SIDE_MARGIN = (int) dpToPx(80); // Margin between elements and the sides of the screen
 
@@ -98,20 +114,26 @@ public class GameOverParty extends AppCompatActivity {
         set.applyTo(layout);
     }
 
+    /**
+     * Constraints a TextView to the top of the screen, so it is displayed ad the correct height.
+     * @param textView  TextView that has to be constrained
+     * @param i  index of occurrence in the player list
+     */
     private void constraintVertically(TextView textView, int i) {
         int TOP_SPACE = (int) dpToPx(110); // Distance between the first name and top of the screen
         int DIFFERENCE = (int) dpToPx(45); // Distance between two names
 
-        int margin = TOP_SPACE + i * DIFFERENCE;
+        int margin = TOP_SPACE + i * DIFFERENCE; // Calculate the correct margin
 
         ConstraintLayout layout = findViewById(R.id.game_over_party_constraint);
         ConstraintSet set = new ConstraintSet();
         set.clone(layout);
 
+        // Constraint TextView
         set.connect(textView.getId(), ConstraintSet.TOP,
                 layout.getId(), ConstraintSet.TOP, margin);
 
-        set.applyTo(layout);
+        set.applyTo(layout); // Apply changes
     }
 
     /**
