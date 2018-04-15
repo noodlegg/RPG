@@ -111,11 +111,9 @@ public class PartyGame extends Game {
      */
     private void gameOver() {
         // Go to the Game Over screen
-        Intent intent = new Intent(this, GameOverSolo.class);
-        Bundle bundle = new Bundle(); // New Bundle to pass score to Game Over screen
-        bundle.putInt("score", score); // Add score to bundle
-        intent.putExtras(bundle); // Add bundle to intent
-        startActivity(intent); // Start the intent
+        Intent intent = new Intent(this, GameOverParty.class);
+        intent.putExtra("players", players); // Pass players to the game overs screen
+        startActivity(intent);
         finish();
     }
 }

@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".SoloGame" />
         <activity android:name=".GameOverSolo" />
+        <activity android:name=".GameOverParty" />
         <activity android:name=".InputNames" />
         <activity android:name=".PartyGame" />
     </application>

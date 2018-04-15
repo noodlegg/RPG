@@ -1,6 +1,5 @@
 package com.example.sword.rpg;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ public class GameOverSolo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_over);
+        setContentView(R.layout.activity_game_over_solo);
 
         // The Home button
         Button homeButton = findViewById(R.id.home_button);

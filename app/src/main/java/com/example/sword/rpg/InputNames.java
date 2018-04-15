@@ -291,7 +291,7 @@ public class InputNames extends AppCompatActivity {
     private ArrayList<PlayerTriplet> makePlayerList() {
         ArrayList<PlayerTriplet> players = new ArrayList<>();
         for (String name : names) {
-            PlayerTriplet player = new PlayerTriplet(name, 3, 0);
+            PlayerTriplet player = new PlayerTriplet(name);
             players.add(player);
         }
         return players;
@@ -357,7 +357,7 @@ public class InputNames extends AppCompatActivity {
     }
 
     /**
-     * Cuts of a string if it is deemed too long (in this case: more than 13 characters).
+     * Cuts off a string if it is deemed too long (in this case: more than 13 characters).
      * @param name  string that (possibly) needs to be shortened
      * @return {@code name} if {@code name.length() <= 13}
      *          the first 12 characters of {@code name} followed by three dots otherwise
