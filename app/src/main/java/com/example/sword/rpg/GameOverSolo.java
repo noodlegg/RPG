@@ -15,6 +15,7 @@ import android.widget.TextView;
  * high score.
  */
 public class GameOverSolo extends AppCompatActivity {
+    private int highScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +65,11 @@ public class GameOverSolo extends AppCompatActivity {
             SharedPreferences.Editor editor = prefs.edit(); // Create editor to change shared data
             editor.putInt("highScore", score); // Update the high score
             editor.apply(); // Apply changes
+            highScore = score;
         } else { // (if the high score was not beaten: )
             // Display current (unbeaten) high score
             highScoreText.setText("High score: " + oldHighScore);
+            highScore = oldHighScore;
         }
     }
 
@@ -75,6 +78,9 @@ public class GameOverSolo extends AppCompatActivity {
      */
     protected void toHome() {
         Intent intent = new Intent(this, Home.class);
+        Bundle bundle = new Bundle(); // New Bundle to pass score to Game Over screen
+        bundle.putInt("highScore", highScore); // Add score to bundle
+        intent.putExtras(bundle); // Add bundle to intent
         startActivity(intent);
         finish();
     }

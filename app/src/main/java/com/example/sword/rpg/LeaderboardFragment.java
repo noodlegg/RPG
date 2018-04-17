@@ -1,6 +1,7 @@
 package com.example.sword.rpg;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -67,6 +68,16 @@ public class LeaderboardFragment extends Fragment {
 
         // Initialize ListView and its adapter
         List<PlayerScore> playerScores = new ArrayList<>();
+
+        // Get Highscore from GameOver
+        Intent intent = getActivity().getIntent();
+        if (intent.hasExtra("highScore")) {
+            Bundle bundle = getActivity().getIntent().getExtras();
+            int score = bundle.getInt("highScore");
+            PlayerScore p1 = new PlayerScore("p1", score);
+            mPlayerDatabaseReference.push().setValue(p1);
+        }
+
         mLeaderboardAdapter
                 = new LeaderboardAdapter(getActivity(), R.layout.leaderboard_list_item, playerScores);
         mLeaderboardAdapter.notifyDataSetChanged();
