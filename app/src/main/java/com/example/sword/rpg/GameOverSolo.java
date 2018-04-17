@@ -1,6 +1,5 @@
 package com.example.sword.rpg;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,24 +7,28 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class GameOver extends AppCompatActivity {
+/**
+ * Game Over screen that is shown at the end of a Solo Game.
+ * It contains both the score that was achieved in this game, as well as the user's personal
+ * high score.
+ */
+public class GameOverSolo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_over);
+        setContentView(R.layout.activity_game_over_solo);
 
         // The Home button
-        ImageButton homeButton = findViewById(R.id.home_button);
+        Button homeButton = findViewById(R.id.home_button);
         homeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {toHome(); }
         });
 
         // The Retry button
-        ImageButton retryButton = findViewById(R.id.retry_button);
+        Button retryButton = findViewById(R.id.retry_button);
         retryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {playAgain(); }
         });
@@ -68,7 +71,7 @@ public class GameOver extends AppCompatActivity {
     }
 
     /**
-     * Opens the Home activity.
+     * Opens the Home screen.
      */
     protected void toHome() {
         Intent intent = new Intent(this, Home.class);

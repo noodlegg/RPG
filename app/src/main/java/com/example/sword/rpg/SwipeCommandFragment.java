@@ -113,10 +113,10 @@ public class SwipeCommandFragment extends Command {
         // On a correct swipe:
         if (detected == direction) {
             // Command succeeded
-            ((SoloGame)getActivity()).commandFinished(true);
+            ((Game)getActivity()).commandFinished(true);
         } else { // (on wrong swipe:)
             // Command failed
-            ((SoloGame)getActivity()).commandFinished(false);
+            ((Game)getActivity()).commandFinished(false);
         }
     }
 }

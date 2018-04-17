@@ -1,17 +1,15 @@
 package com.example.sword.rpg;
 
-import android.support.v4.app.Fragment;
-
 /**
  * Stores a triplet of a Fragment, Integer and Double
  */
-public class Triplet<T, U, V> {
+public class CommandTriplet {
 
     private final Command command;
     private Integer weight;
     private final Double difficulty;
 
-    public Triplet(Command command, Integer weight, Double difficulty) {
+    public CommandTriplet(Command command, Integer weight, Double difficulty) {
         this.command = command;
         this.weight = weight;
         this.difficulty = difficulty;
@@ -34,6 +32,6 @@ public class Triplet<T, U, V> {
     }
 
     public void resetWeight() {
-        weight = 0;
+        weight = 1;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -33,14 +34,15 @@ public class GameSelectFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SoloGame.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
-        // Opens PartyGame activity
+        // Opens InputNames activity that leads to PartyGame
         playParty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(v.getContext(), ShakeMechanic.class);
-                //startActivity(intent);
+                Intent intent = new Intent(v.getContext(), InputNames.class);
+                startActivity(intent);
             }
         });
         // Inflate the layout for this fragment

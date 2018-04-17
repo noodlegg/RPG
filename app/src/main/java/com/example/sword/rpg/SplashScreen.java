@@ -14,7 +14,7 @@ import android.view.Window;
 
 public class SplashScreen extends AppCompatActivity {
     //the duration of the splash screen in milliseconds
-    private final int SPLASH_DISPLAY_LENGTH = 2000;
+    private final int SPLASH_DISPLAY_LENGTH = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

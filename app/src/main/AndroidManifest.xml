@@ -11,16 +11,25 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name=".SplashScreen"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Home"/>
-        <activity android:name=".SoloGame" />
-        <activity android:name=".GameOver" />
-        <activity android:name=".MultiplayerConnection" />
+        <activity android:name=".Home"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SoloGame"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".GameOverSolo"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".GameOverParty"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".InputNames"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PartyGame"
+            android:screenOrientation="portrait"/>
     </application>
     <!-- Require that the device has an accelerometer -->
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />

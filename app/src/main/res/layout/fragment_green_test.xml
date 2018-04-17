@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.sword.rpg.GreenTestFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_green_dark"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toTopOf="parent"
         android:text="Green" />
 
 </FrameLayout>
