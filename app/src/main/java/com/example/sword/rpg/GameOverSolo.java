@@ -78,9 +78,10 @@ public class GameOverSolo extends AppCompatActivity {
      */
     protected void toHome() {
         Intent intent = new Intent(this, Home.class);
-        Bundle bundle = new Bundle(); // New Bundle to pass score to Game Over screen
-        bundle.putInt("highScore", highScore); // Add score to bundle
-        intent.putExtras(bundle); // Add bundle to intent
+        intent.putExtra("highScore", highScore); // Add score to bundle
+        // Retrieve username from SoloGame activity
+        String username = getIntent().getStringExtra("username");
+        intent.putExtra("username", username);
         startActivity(intent);
         finish();
     }

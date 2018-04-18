@@ -33,6 +33,7 @@ public class GameSelectFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SoloGame.class);
+                intent.putExtra("username", ((Home) getActivity()).getUsername());
                 startActivity(intent);
                 getActivity().finish();
             }

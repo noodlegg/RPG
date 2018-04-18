@@ -16,6 +16,7 @@ public class Home extends AppCompatActivity {
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
+    public String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,11 @@ public class Home extends AppCompatActivity {
         fragment = new GameSelectFragment();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.main_container, fragment).commit();
+
+        // Get username passed from GameOverSolo activity if available
+        if (getIntent().getExtras() != null) {
+            setUsername(getIntent().getStringExtra("username"));
+        }
 
         // Initialize BottomNavigationView
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -51,6 +57,13 @@ public class Home extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String newUserName) {
+        username = newUserName;
     }
 }

@@ -30,9 +30,10 @@ public class SoloGame extends Game {
     private void gameOver() {
         // Go to the Game Over screen
         Intent intent = new Intent(this, GameOverSolo.class);
-        Bundle bundle = new Bundle(); // New Bundle to pass score to Game Over screen
-        bundle.putInt("score", score); // Add score to bundle
-        intent.putExtras(bundle); // Add bundle to intent
+        intent.putExtra("score", score); // Add score to bundle
+        // Retrieve username from Home activity
+        String username = getIntent().getStringExtra("username");
+        intent.putExtra("username", username);
         startActivity(intent); // Start the intent
         finish();
     }

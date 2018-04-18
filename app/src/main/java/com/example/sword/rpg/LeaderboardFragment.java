@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,6 @@ public class LeaderboardFragment extends Fragment {
     private LeaderboardAdapter mLeaderboardAdapter;
     private EditText mEditText;
     private Button mButton;
-    private String mUsername;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mPlayerDatabaseReference;
     private ChildEventListener mChildEventListener;
@@ -54,8 +54,6 @@ public class LeaderboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_leaderboard, container, false);
-
-        mUsername = ANONYMOUS;
 
         // Initialize Firebase
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -74,8 +72,9 @@ public class LeaderboardFragment extends Fragment {
         if (intent.hasExtra("highScore")) {
             Bundle bundle = getActivity().getIntent().getExtras();
             int score = bundle.getInt("highScore");
-            PlayerScore p1 = new PlayerScore("p1", score);
-            mPlayerDatabaseReference.push().setValue(p1);
+            String username = ((Home) getActivity()).getUsername();
+            PlayerScore playerScore = new PlayerScore(username, score);
+            mPlayerDatabaseReference.child(username).setValue(playerScore);
         }
 
         mLeaderboardAdapter
@@ -109,8 +108,8 @@ public class LeaderboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 PlayerScore playerScore
-                        = new PlayerScore(mUsername, Integer.parseInt(mEditText.getText().toString()));
-                mPlayerDatabaseReference.push().setValue(playerScore);
+                        = new PlayerScore("tester", Integer.parseInt(mEditText.getText().toString()));
+                mPlayerDatabaseReference.child("manual").setValue(playerScore);
                 // Clear EditText
                 mEditText.setText("");
             }
