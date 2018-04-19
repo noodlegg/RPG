@@ -47,10 +47,14 @@ public class SettingsFragment extends Fragment {
 
         howToPlayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HowToPlay.class);
+                startActivity(intent);
             }
         });
         aboutUsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AboutUs.class);
+                startActivity(intent);
             }
         });
         return view;

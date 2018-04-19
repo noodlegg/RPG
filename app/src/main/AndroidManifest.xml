@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sword.rpg">
 
+    <!-- Require that the device has an accelerometer -->
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,22 +20,30 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Home"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SoloGame"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".GameOverSolo"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".GameOverParty"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".InputNames"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PartyGame"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Home"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SoloGame"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GameOverSolo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GameOverParty"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InputNames"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PartyGame"
+            android:screenOrientation="portrait" />
+        <activity android:name=".HowToPlay" />
+        <activity android:name=".AboutUs"></activity>
     </application>
-    <!-- Require that the device has an accelerometer -->
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+
 </manifest>

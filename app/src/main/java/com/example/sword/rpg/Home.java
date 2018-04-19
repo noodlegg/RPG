@@ -16,7 +16,7 @@ public class Home extends AppCompatActivity {
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
-    public String username;
+    public String username = "unknown";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
