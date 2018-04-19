@@ -39,8 +39,6 @@ public class LeaderboardFragment extends Fragment {
     public static final int SCORE_LIMIT = 1000;
     private ListView mListView;
     private LeaderboardAdapter mLeaderboardAdapter;
-    private EditText mEditText;
-    private Button mButton;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mPlayerDatabaseReference;
     private ChildEventListener mChildEventListener;
@@ -61,8 +59,6 @@ public class LeaderboardFragment extends Fragment {
 
         // Initialize references to views
         mListView = (ListView) rootView.findViewById(R.id.lb_listView);
-        mEditText = (EditText) rootView.findViewById(R.id.lb_editText);
-        mButton = (Button) rootView.findViewById(R.id.lb_button);
 
         // Initialize ListView and its adapter
         List<PlayerScore> playerScores = new ArrayList<>();
@@ -82,38 +78,6 @@ public class LeaderboardFragment extends Fragment {
         mLeaderboardAdapter.notifyDataSetChanged();
         mListView.setAdapter(mLeaderboardAdapter);
 
-        // EditText for input
-        mEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().trim().length() > 0) {
-                    mButton.setEnabled(true);
-                } else {
-                    mButton.setEnabled(false);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
-        mEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(SCORE_LIMIT)});
-
-        // Button sends score to Firebase and clears EditText
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PlayerScore playerScore
-                        = new PlayerScore("tester", Integer.parseInt(mEditText.getText().toString()));
-                mPlayerDatabaseReference.child("manual").setValue(playerScore);
-                // Clear EditText
-                mEditText.setText("");
-            }
-        });
 
         mChildEventListener = new ChildEventListener() {
             @Override
