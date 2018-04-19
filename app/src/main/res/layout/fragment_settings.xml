@@ -21,8 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/soundEffects"
         android:layout_centerHorizontal="true"
+        android:maxLength="20"
         android:layout_marginBottom="32dp"
         android:hint="Enter username"
+        android:textColorHint="#000000"
         android:textColor="#000000"/>
 
     <Button
