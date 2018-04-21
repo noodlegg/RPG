@@ -96,10 +96,14 @@ public class Game extends AppCompatActivity{
         final int START_WEIGHT = 1;
 
         // Add commands with their weight and difficulty to the ArrayList
-        commands.add(new CommandTriplet(new GreenTestFragment(), START_WEIGHT, 5D));
-        commands.add(new CommandTriplet(new RedTestFragment(), START_WEIGHT, 1D));
-        commands.add(new CommandTriplet(new BlueTestFragment(), START_WEIGHT, 1D));
-        commands.add(new CommandTriplet(new SwipeCommandFragment(), START_WEIGHT, 1D));
+        //commands.add(new CommandTriplet(new GreenTestFragment(), START_WEIGHT, 1D));
+        //commands.add(new CommandTriplet(new RedTestFragment(), START_WEIGHT, 1D));
+        //commands.add(new CommandTriplet(new BlueTestFragment(), START_WEIGHT, 1D));
+        //commands.add(new CommandTriplet(new SwipeCommandFragment(), START_WEIGHT, 1D));
+        commands.add(new CommandTriplet(new CompassCommandFragment(), START_WEIGHT, 1D));
+        //commands.add(new CommandTriplet(new ShakeCommandFragment(), START_WEIGHT, 1D));
+        commands.add(new CommandTriplet(new TapCommandFragment(), START_WEIGHT, 1D));
+        //commands.add(new CommandTriplet(new TiltCommandFragment(), START_WEIGHT, 1D));
 
         return commands;
     }
