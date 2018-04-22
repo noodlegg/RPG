@@ -22,12 +22,6 @@ public class SwipeCommandFragment extends Command {
         // Define view
         view = inflater.inflate(R.layout.fragment_swipe_command, container, false);
 
-        ImageView arrow = view.findViewById(R.id.arrow); // Arrow image
-
-        arrow.setRotation(90* direction);
-
-
-
         final GestureDetector gesture = new GestureDetector(getActivity(),
                 new GestureDetector.SimpleOnGestureListener() {
 

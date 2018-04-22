@@ -17,7 +17,7 @@ public class TapCommandFragment extends Command {
     private int direction;
     private View view;
     private int n=0;
-    private boolean isClicked;
+    public boolean isClicked;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
